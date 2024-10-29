@@ -1,14 +1,18 @@
-import { SignupInput } from "@riyazsh9311/medium-common"
+import { SignupInput } from "../../../common/src/index"
 import axios from "axios";
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BACKEND_URL } from "../config";
 import InputFields from "./InputFields";
+import UserContext from "./UserContext";
+// import UserContext from "./UserContext";
 
 
 
 const Signup = ({type} : {type:"Signup"}) => {
     const navigate = useNavigate();
+
+    // const { setLoggedInUser } = useContext(UserContext)
 
     const [postInputs, setPostInputs] = useState<SignupInput>({
         name: "",
@@ -19,11 +23,21 @@ const Signup = ({type} : {type:"Signup"}) => {
     const handleCreateUser = async() => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`,postInputs)
         const jwt = response.data.token;
+        // const user = response.data.user;
+
+        // setLoggedInUser(user);
 
         localStorage.setItem("token", jwt)
 
-        navigate("/blogs")
+        
     };
+    const { loggedInUser } = useContext(UserContext);
+
+    useEffect(() => {
+        if (loggedInUser) {
+            navigate("/blogs"); // Redirect to login if not logged in
+        }
+    }, [loggedInUser, navigate]);
 
     
   return (

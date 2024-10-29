@@ -38,7 +38,7 @@ export function Avatar({ name, size }: { name: string; size: number }) {
   
     return (
       <div
-        className={`relative inline-flex items-center justify-center ${sizeClass} overflow-hidden bg-gray-300 rounded-full dark:bg-gray-600`}
+        className={`relative inline-flex items-center justify-center ${sizeClass} overflow-hidden bg-slate-400 rounded-full dark:bg-gray-600`}
         style={{ width: `${size}px`, height: `${size}px` }} // Use inline style as a fallback for dynamic sizes
       >
         <span className="font-medium text-gray-600 dark:text-gray-300">{name[0]}</span>

@@ -1,9 +1,23 @@
 // import Footer from "../components/Footer";
 
-import { Link } from "react-router-dom";
+// import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../components/UserContext";
+// import UserContext from "../components/UserContext";
+
 
 
 const Home = () => {
+  const { loggedInUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (loggedInUser) {
+            navigate("/blogs"); // Redirect to login if not logged in
+        }
+    }, [loggedInUser, navigate]); 
+    
   return (
     <div className="mt-20 max-w-screen-xl container mx-auto px-2 xl:px-28">
       {/* <div className="flex justify-between items-center"> */}
@@ -25,8 +39,8 @@ const Home = () => {
       </Link>
       </div>
       <div className="mx-16 rounded-full hidden sm:block ">
-        <img className="w-64  rounded-tl-full rounded-br-full " alt="hero-img" src="/hero.png"/>
-        <img className="w-64  rounded-bl-full rounded-tr-full absolute  -mt-[256px] " alt="hero-img" src="./public/hero.png"/>
+        <img className="w-64  rounded-tl-full rounded-br-full " alt="hero-img" src="./hero.webp"/>
+        <img className="w-64  rounded-bl-full rounded-tr-full absolute  -mt-[256px] " alt="hero-img" src="./hero.webp"/>
       </div>
       
       </div>
