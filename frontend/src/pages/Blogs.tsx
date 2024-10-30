@@ -1,9 +1,20 @@
 
+import { useContext, useEffect } from "react";
 import BlogCard from "../components/BlogCard";
 import { useBlogs } from "../components/hooks/useBlogs";
+import UserContext from "../components/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Blogs = () => {
+  const navigate = useNavigate();
+  const {loggedInUser} = useContext(UserContext);
   const { loading, blogs } = useBlogs();
+
+  useEffect(() => {
+    if (!loggedInUser) {
+        navigate("/signin"); // Redirect to login if not logged in
+    }
+}, [loggedInUser, navigate]); 
 
   if (loading) {
     return <div className="text-center text-lg py-10">Loading...</div>;

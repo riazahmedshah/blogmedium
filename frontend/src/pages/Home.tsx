@@ -13,8 +13,8 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (loggedInUser) {
-            navigate("/blogs"); // Redirect to login if not logged in
+        if (!loggedInUser) {
+            navigate("/signin"); // Redirect to login if not logged in
         }
     }, [loggedInUser, navigate]); 
     
