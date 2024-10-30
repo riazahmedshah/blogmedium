@@ -21,13 +21,13 @@ const Signin = ({type} : {type:"Signin"}) => {
     const handleCreateUser = async() => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`,postInputs)
         const jwt = response.data.token;
-        // const user = response.data.user;
-        // setLoggedInUser(user);
+        const user = response.data.user;
+        setLoggedInUser(user);
         localStorage.setItem("token", jwt)
         //navigate("/blogs")
     };
 
-    const { loggedInUser } = useContext(UserContext);
+    const { loggedInUser,setLoggedInUser } = useContext(UserContext);
 
     useEffect(() => {
         if (loggedInUser) {

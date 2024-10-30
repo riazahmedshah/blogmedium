@@ -23,15 +23,15 @@ const Signup = ({type} : {type:"Signup"}) => {
     const handleCreateUser = async() => {
         const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`,postInputs)
         const jwt = response.data.token;
-        // const user = response.data.user;
+        const user = response.data.user;
 
-        // setLoggedInUser(user);
+         setLoggedInUser(user);
 
         localStorage.setItem("token", jwt)
 
         
     };
-    const { loggedInUser } = useContext(UserContext);
+    const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
     useEffect(() => {
         if (loggedInUser) {

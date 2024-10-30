@@ -1,4 +1,4 @@
-import zod, { string } from 'zod';
+import zod from 'zod';
 
 export const signupInputs = zod.object({
     email: zod.string().email(),
