@@ -1,7 +1,7 @@
 import {SigninInput} from "../types/index"
 //import { SigninInput } from "@riyazsh9311/medium-common"
 import axios from "axios";
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BACKEND_URL } from "../config";
 import InputFields from "./InputFields";
@@ -24,16 +24,16 @@ const Signin = ({type} : {type:"Signin"}) => {
         const user = response.data.user;
         setLoggedInUser(user);
         localStorage.setItem("token", jwt)
-        //navigate("/blogs")
+        navigate("/blogs")
     };
 
-    const { loggedInUser,setLoggedInUser } = useContext(UserContext);
+    const { setLoggedInUser } = useContext(UserContext);
 
-    useEffect(() => {
-        if (loggedInUser) {
-            navigate("/blogs"); // Redirect to login if not logged in
-        }
-    }, [loggedInUser, navigate]); 
+    // useEffect(() => {
+    //     if (loggedInUser) {
+    //         navigate("/blogs"); // Redirect to login if not logged in
+    //     }
+    // }, [loggedInUser, navigate]); 
 
     
   return (

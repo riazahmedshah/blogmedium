@@ -1,6 +1,6 @@
 import { SignupInput } from "../types/index"
 import axios from "axios";
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BACKEND_URL } from "../config";
 import InputFields from "./InputFields";
@@ -26,18 +26,18 @@ const Signup = ({type} : {type:"Signup"}) => {
         const user = response.data.user;
 
          setLoggedInUser(user);
-
+         navigate("/blogs");
         localStorage.setItem("token", jwt)
 
         
     };
-    const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+    const { setLoggedInUser } = useContext(UserContext);
 
-    useEffect(() => {
-        if (loggedInUser) {
-            navigate("/blogs"); // Redirect to login if not logged in
-        }
-    }, [loggedInUser, navigate]);
+    // useEffect(() => {
+    //     if (loggedInUser) {
+    //          // Redirect to login if not logged in
+    //     }
+    // }, [loggedInUser, navigate]);
 
     
   return (

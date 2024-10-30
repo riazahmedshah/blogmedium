@@ -24,7 +24,7 @@ function Layout() {
 function App() {
   return (
     <UserProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <Routes>
           <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
