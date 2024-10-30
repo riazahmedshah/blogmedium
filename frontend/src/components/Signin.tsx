@@ -1,4 +1,4 @@
-import {SigninInput} from "../../../common/src/index"
+import {SigninInput} from "../types/index"
 //import { SigninInput } from "@riyazsh9311/medium-common"
 import axios from "axios";
 import { useContext, useEffect, useState } from "react"
