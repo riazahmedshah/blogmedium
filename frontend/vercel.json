@@ -1,7 +1,13 @@
 {
-    "rewrites": [
-      { "source": "/(.*)", "destination": "/" }
-    ]
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
+  "github": {
+    "deployments": {
+      "productionBranch": "main" 
+    }
+  }
 }
+
   
   
