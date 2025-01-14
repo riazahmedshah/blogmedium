@@ -15,6 +15,7 @@ import { BACKEND_URL } from "../../config";
 export const useBlogs = () => {
   const[loading, setLoading] = useState(true);
   const[blogs, setBlogs] = useState<Blog[]>();
+  const[filteredBlogs,setFilteredBlogs] = useState<Blog[]>();
 
   useEffect(() => {
     axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
@@ -24,6 +25,7 @@ export const useBlogs = () => {
     })
     .then(response => {
       setBlogs(response.data.blogs);
+      setFilteredBlogs(response.data.blogs);
       setLoading(false);
     })
     .catch(error => {
@@ -34,7 +36,9 @@ export const useBlogs = () => {
   
   return {
     loading,
-    blogs
+    blogs,
+    filteredBlogs,
+    setFilteredBlogs
   }
 };
 

@@ -13,7 +13,7 @@ const Signup = ({type} : {type:"Signup"}) => {
     const navigate = useNavigate();
 
     // const { setLoggedInUser } = useContext(UserContext)
-
+    const[loading, setLoading] = useState(false);
     const [postInputs, setPostInputs] = useState<SignupInput>({
         name: "",
         email: "",
@@ -21,13 +21,20 @@ const Signup = ({type} : {type:"Signup"}) => {
     });
 
     const handleCreateUser = async() => {
-        const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`,postInputs)
-        const jwt = response.data.token;
-        const user = response.data.user;
-
-         setLoggedInUser(user);
-         navigate("/blogs");
-        localStorage.setItem("token", jwt)
+        try {
+            setLoading(true);
+            const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`,postInputs)
+            const jwt = response.data.token;
+            const user = response.data.user;
+    
+             setLoggedInUser(user);
+             navigate("/blogs");
+            localStorage.setItem("token", jwt)
+        } catch (error) {
+            console.error("Error signing in user:", error);
+        } finally {
+             setLoading(false); // Reset loading state after the request completes    
+        }
 
         
     };
@@ -68,7 +75,9 @@ const Signup = ({type} : {type:"Signup"}) => {
                         password: e.target.value
                     })
                 }}/>
-                <button onClick={handleCreateUser} type="button" className="mt-4 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{type}</button>
+                <button onClick={handleCreateUser} type="button" className="mt-4 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                    {loading ? "loading...":type}
+                </button>
             </div>
             </div>
             </div>

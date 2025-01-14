@@ -8,7 +8,7 @@ import { UserProvider } from './components/UserContext';
 import Home from './pages/Home';
 import Appbar from './components/Appbar';
 import Footer from './components/Footer';
-
+import { BackgroundBeamsWithCollisionDemo } from './components/Landing';
 function Layout() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -26,13 +26,14 @@ function App() {
     <UserProvider>
       <BrowserRouter basename="/">
         <Routes>
-          <Route element={<Layout />}>
-            <Route path='/' element={<Home />} />
             <Route path='/signup' element={<Auth type='Signup' />} />
             <Route path='/signin' element={<Auth type='Signin' />} />
+            <Route path='/' element={<Home />} />
+          <Route element={<Layout />}>
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/blog/:id' element={<Blog />} />
             <Route path='/publish' element={<Publish />} />
+            <Route path='/landing' element={<BackgroundBeamsWithCollisionDemo/>} />
           </Route>
         </Routes>
       </BrowserRouter>

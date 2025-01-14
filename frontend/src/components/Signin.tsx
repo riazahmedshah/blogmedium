@@ -1,12 +1,10 @@
 import {SigninInput} from "../types/index"
 //import { SigninInput } from "@riyazsh9311/medium-common"
 import axios from "axios";
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BACKEND_URL } from "../config";
 import InputFields from "./InputFields";
-import UserContext from "./UserContext";
-// import UserContext from "./UserContext";
 
 
 
@@ -17,23 +15,26 @@ const Signin = ({type} : {type:"Signin"}) => {
         email: "",
         password:""
     });
+    const[loading, setLoading] = useState(false);
 
-    const handleCreateUser = async() => {
-        const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`,postInputs)
-        const jwt = response.data.token;
-        const user = response.data.user;
-        setLoggedInUser(user);
-        localStorage.setItem("token", jwt)
-        navigate("/blogs")
-    };
 
-    const { setLoggedInUser } = useContext(UserContext);
+    const handleCreateUser = async () => {
+        setLoading(true); // Set loading to true before starting the request
+        try {
+          const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, postInputs);
+          const jwt = response.data.token;
+    
+          navigate("/blogs"); // Navigate after successful login
+          localStorage.setItem("token", jwt);
+        } catch (error) {
+          console.error("Error signing in user:", error);
+          // Handle error, show error message, etc.
+        } finally {
+          setLoading(false); // Reset loading state after the request completes
+        }
+      };
 
-    // useEffect(() => {
-    //     if (loggedInUser) {
-    //         navigate("/blogs"); // Redirect to login if not logged in
-    //     }
-    // }, [loggedInUser, navigate]); 
+     
 
     
   return (
@@ -59,7 +60,11 @@ const Signin = ({type} : {type:"Signin"}) => {
                         password: e.target.value
                     })
                 }}/>
-                <button onClick={handleCreateUser} type="button" className="mt-4 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{type}</button>
+                <button onClick={handleCreateUser} type="button" className="mt-4 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                   {
+                        loading ? "Loading..." : type 
+                   } 
+                </button>
             </div>
             </div>
             </div>
