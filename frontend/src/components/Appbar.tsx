@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 
 import { useContext } from "react"
 import { Link, useLocation } from "react-router-dom"
@@ -7,7 +5,6 @@ import UserContext from "./UserContext"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Button, buttonVariants } from "./ui/button";
 import { User2 } from "lucide-react";
-// import { Avatar } from "./BlogCard";
 
 
 
@@ -22,10 +19,10 @@ const Appbar = () => {
 
   const {loggedInUser, setLoggedInUser} = useContext(UserContext);
 
-  // function removeToken() {
-  //   localStorage.removeItem('token');
-  //   setLoggedInUser(null);  // Update state to reflect the logged-out status
-  // }
+  function removeToken() {
+    localStorage.removeItem('token');
+    setLoggedInUser(null);  // Update state to reflect the logged-out status
+  }
   
  
 
@@ -54,7 +51,7 @@ const Appbar = () => {
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator/>
-                  <DropdownMenuItem>Logout</DropdownMenuItem>
+                  <DropdownMenuItem onClick={removeToken}>Logout</DropdownMenuItem>
                   <DropdownMenuItem>Profile</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

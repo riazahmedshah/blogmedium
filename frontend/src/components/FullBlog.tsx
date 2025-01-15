@@ -6,9 +6,9 @@ export const FullBlog = ({blog} : {blog : Blog}) => {
     return(
         <div>
             <div className="flex justify-center">
-                <div className="grid grid-cols-12 px-10 w-full  max-w-screen-xl pt-12">
+                <div className="grid md:grid-cols-12 px-10 w-full space-y-10  max-w-screen-xl py-12">
                     <div className="col-span-8">
-                        <div className="text-5xl font-extrabold">
+                        <div className="md:text-5xl text-4xl  font-extrabold">
                             {blog.title}
                         </div>
                         <div className="text-slate-500 pt-2">

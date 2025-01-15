@@ -94,16 +94,16 @@ const Home = () => {
             </div>}
         </nav>
       </header>
-    <div className="absolute pt-40 min-h-screen w-full from-gray-100 via-green-300 to-green-500 bg-gradient-to-br container mx-auto px-2 xl:px-28">
+    <div className="absolute md:pt-40 pt-32 min-h-screen w-full from-gray-100 via-green-300 to-green-500 bg-gradient-to-br container mx-auto px-6 xl:px-28">
       <div className="flex flex-col max-w-screen-lg justify-center mx-auto">
         <div>
-          <h1 className="text-7xl mb-7 font-bold tracking-normal">
+          <h1 className="md:text-7xl text-5xl  mb-7 font-bold tracking-normal">
             Uncover insights,<br />
             Connect with ideas that <AnimatedText />.
           </h1>
-          <h3 className="text-gray-800 text-xl tracking-tight leading-6 mb-7">
-            Dive into a world of creativity, where every story <br />ignites
-            curiosity and passion. Join a community that values diverse <br />
+          <h3 className="text-gray-800 md:text-xl md:max-w-md max-w-lg text-base tracking-normal mb-7">
+            Dive into a world of creativity, where every story ignites
+            curiosity and passion. Join a community that values diverse
             perspectives and meaningful dialogue.
           </h3>
           <Link to="/publish">
