@@ -14,8 +14,8 @@ const AnimatedText = () => {
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [index, setIndex] = useState(0);
 
-  const {loggedInUser} = useContext(UserContext);
-  const navigate = useNavigate();
+  //const {loggedInUser} = useContext(UserContext);
+  //const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,9 +31,9 @@ const AnimatedText = () => {
   // if(loggedInUser){
   //   navigate("/blogs")
   // }
-  if(!loggedInUser){
-    navigate("/")
-  }
+  // if(!loggedInUser){
+  //   navigate("/")
+  // }
 
   return (
     <motion.span

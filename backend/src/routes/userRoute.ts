@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono }  from "hono"
 import { sign, verify } from "hono/jwt";
-import { signinInputs, signupInputs } from "../../../common/src/index";
+import { signinInputs, signupInputs } from "../types/index";
 
 
 export const userRoute = new Hono<{
@@ -69,7 +69,7 @@ export const userRoute = new Hono<{
           return c.json({error: "user not found"})
         }
         const token = await sign({id: user.id}, "secret");
-        return c.json({token});
+        return c.json({token, user});
       });
 
 

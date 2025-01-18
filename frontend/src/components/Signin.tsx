@@ -18,14 +18,16 @@ const Signin = ({type} : {type:"Signin"}) => {
     const[loading, setLoading] = useState(false);
 
 
-    const handleCreateUser = async () => {
+    const handleLoginUser = async () => {
         setLoading(true); // Set loading to true before starting the request
         try {
           const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, postInputs);
           const jwt = response.data.token;
+          const user = response.data.user;
+          console.log("User details: ",user);
     
-          navigate("/blogs"); // Navigate after successful login
           localStorage.setItem("token", jwt);
+          navigate("/blogs"); // Navigate after successful login
         } catch (error) {
           console.error("Error signing in user:", error);
           // Handle error, show error message, etc.
@@ -33,10 +35,6 @@ const Signin = ({type} : {type:"Signin"}) => {
           setLoading(false); // Reset loading state after the request completes
         }
       };
-
-     
-
-    
   return (
     <div className="h-screen flex justify-center flex-col">
         <div className="flex justify-center">
@@ -60,7 +58,7 @@ const Signin = ({type} : {type:"Signin"}) => {
                         password: e.target.value
                     })
                 }}/>
-                <button onClick={handleCreateUser} type="button" className="mt-4 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                <button onClick={handleLoginUser} type="button" className="mt-4 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
                    {
                         loading ? "Loading..." : type 
                    } 
