@@ -1,10 +1,11 @@
 import {SigninInput} from "../types/index"
 //import { SigninInput } from "@riyazsh9311/medium-common"
 import axios from "axios";
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BACKEND_URL } from "../config";
 import InputFields from "./InputFields";
+import UserContext from "./UserContext";
 
 
 
@@ -16,7 +17,7 @@ const Signin = ({type} : {type:"Signin"}) => {
         password:""
     });
     const[loading, setLoading] = useState(false);
-
+    const {loggedInUser, setLoggedInUser } = useContext(UserContext);
 
     const handleLoginUser = async () => {
         setLoading(true); // Set loading to true before starting the request
@@ -24,10 +25,11 @@ const Signin = ({type} : {type:"Signin"}) => {
           const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, postInputs);
           const jwt = response.data.token;
           const user = response.data.user;
-          console.log("User details: ",user);
+          //console.log("User details: ",user);
+          setLoggedInUser(user);
     
           localStorage.setItem("token", jwt);
-          navigate("/blogs"); // Navigate after successful login
+        //   navigate("/blogs"); // Navigate after successful login
         } catch (error) {
           console.error("Error signing in user:", error);
           // Handle error, show error message, etc.
@@ -35,6 +37,14 @@ const Signin = ({type} : {type:"Signin"}) => {
           setLoading(false); // Reset loading state after the request completes
         }
       };
+
+      useEffect(() => {
+          if (loggedInUser) {
+              navigate("/blogs");
+          }
+      }, [loggedInUser, navigate]);
+
+
   return (
     <div className="h-screen flex justify-center flex-col">
         <div className="flex justify-center">

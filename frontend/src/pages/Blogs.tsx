@@ -19,9 +19,9 @@ const Blogs = () => {
 
   useEffect(() => {
     if (!loggedInUser) {
-        navigate("/"); // Redirect to login if not logged in
+        navigate("/signin"); // Redirect to login if not logged in
     }
-}, [loggedInUser, navigate]); 
+  }, [loggedInUser, navigate]);
 
   if (loading) {
     return (

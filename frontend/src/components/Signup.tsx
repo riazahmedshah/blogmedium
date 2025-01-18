@@ -1,6 +1,6 @@
 import { SignupInput } from "../types/index"
 import axios from "axios";
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BACKEND_URL } from "../config";
 import InputFields from "./InputFields";
@@ -12,7 +12,7 @@ import UserContext from "./UserContext";
 const Signup = ({type} : {type:"Signup"}) => {
     const navigate = useNavigate();
 
-    // const { setLoggedInUser } = useContext(UserContext)
+     const {loggedInUser, setLoggedInUser } = useContext(UserContext);
     const[loading, setLoading] = useState(false);
     const [postInputs, setPostInputs] = useState<SignupInput>({
         name: "",
@@ -38,15 +38,15 @@ const Signup = ({type} : {type:"Signup"}) => {
 
         
     };
-    const { setLoggedInUser } = useContext(UserContext);
 
-    // useEffect(() => {
-    //     if (loggedInUser) {
-    //          // Redirect to login if not logged in
-    //     }
-    // }, [loggedInUser, navigate]);
 
-    
+    useEffect(() => {
+        if (loggedInUser) {
+                  navigate("/blogs");
+        }
+    }, [loggedInUser, navigate]);
+
+
   return (
     <div className="h-screen flex justify-center flex-col">
         <div className="flex justify-center">
