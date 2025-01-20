@@ -32,4 +32,11 @@ export const updateBlogInput = zod.object({
     id : zod.string()
 });
 
+
+export const formatter = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+});
+
 export type UpdateBlogInput = zod.infer<typeof updateBlogInput>

@@ -12,11 +12,11 @@ import  BlogSkeleton  from "../components/BlogSkeleton";
 
 const Blogs = () => {
   const navigate = useNavigate();
-  const {loggedInUser} = useContext(UserContext);
   const { loading, blogs,filteredBlogs,setFilteredBlogs } = useBlogs();
   
   const[search,setSearch] = useState("");
-
+  
+  const {loggedInUser} = useContext(UserContext);
   useEffect(() => {
     if (!loggedInUser) {
         navigate("/signin"); // Redirect to login if not logged in
@@ -62,7 +62,7 @@ const Blogs = () => {
                   authorName={blog.author.name || "Anonymous"}
                   title={blog.title}
                   content={blog.content}
-                  publishedDate={"2nd Feb 2024"} // Example date
+                  createdAt={blog.createdAt} // Example date
                 />
               ))
             ) : (

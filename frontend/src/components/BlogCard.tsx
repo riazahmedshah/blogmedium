@@ -1,3 +1,4 @@
+import { formatter } from "@/types";
 import { Heart, MessageCircle, Share } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -7,11 +8,11 @@ interface blogCard{
     authorName:string,
     title:string,
     content:string,
-    publishedDate:string,
+    createdAt:Date,
 
 }
 
-const BlogCard = ({authorName, title,content,publishedDate, id}:blogCard) => {
+const BlogCard = ({authorName, title,content,createdAt, id}:blogCard) => {
   const [like,setLike] = useState(false);
   const [count,setCount] = useState(0);
   const changeColor = () => {
@@ -26,13 +27,13 @@ const BlogCard = ({authorName, title,content,publishedDate, id}:blogCard) => {
   };
   return (
     <>
-    <div className="p-3 border-b mt-2">
+    <div className="p-3 border-b border-black mt-2">
       <Link to={`/blog/${id}`}>
         <div className="flex">
             <div className="pr-1"><Avatar name={authorName} size={23}/></div>
             <div className="flex items-center">
                 <h1 className="text-xs font-normal text-muted-foreground">{authorName} . </h1>
-                <h1 className="text-xs font-normal pl-2 text-slate-400"> {publishedDate}</h1>
+                <h1 className="text-xs font-normal pl-2 text-slate-400"> {formatter.format(createdAt)}</h1>
             </div>
         </div>
         <div className="my-2 ">
