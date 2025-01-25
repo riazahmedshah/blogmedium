@@ -1,16 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-// import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
-// import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu";
 import { Button, buttonVariants } from "../components/ui/button";
-// import { User2 } from "lucide-react";
 
 const AnimatedText = () => {
-  const words = ["inspire", "create", "innovate", "achieve"]; // Words to cycle through
-  const [currentWord, setCurrentWord] = useState(words[0]);
+  const words = useMemo(() => ["inspire", "create", "innovate", "achieve"], []);  const [currentWord, setCurrentWord] = useState(words[0]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -39,8 +34,6 @@ const AnimatedText = () => {
 };
 
 const Home = () => {
-  // const linkPath = location.pathname === "/blogs" ? "/publish" : "/blogs";
-  // const linkText = location.pathname === "/blogs" ? "Publish" : "Blogs";
 
   return (
     <>
@@ -55,24 +48,6 @@ const Home = () => {
               <button className={buttonVariants()}>Get Started</button>
             </Link>
           </div> 
-          {/* // <div className="flex flex-row items-center">
-          //     <Link to={linkPath}>
-          //       <p className={`${buttonVariants({variant:"link"})} font-bold text-xl`}>{linkText}</p>
-          //     </Link>
-          //     <DropdownMenu>
-          //       <DropdownMenuTrigger asChild>
-          //         <Button className="rounded-full size-10" variant="outline">
-          //           <User2/>
-          //         </Button>
-          //       </DropdownMenuTrigger>
-          //       <DropdownMenuContent>
-          //         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          //         <DropdownMenuSeparator/>
-          //         <DropdownMenuItem>Logout</DropdownMenuItem>
-          //         <DropdownMenuItem>Profile</DropdownMenuItem>
-          //       </DropdownMenuContent>
-          //     </DropdownMenu>
-          // </div> */}
           
         </nav>
       </header>

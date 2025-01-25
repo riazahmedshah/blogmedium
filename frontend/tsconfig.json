@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",  
-    "jsxImportSource": "react",  
-    "allowJs": true, 
+    "target": "ES2015",
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "allowJs": true,
     "strict": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     },
-    "resolveJsonModule": true,  
-    "esModuleInterop": true      
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]
