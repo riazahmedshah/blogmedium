@@ -13,13 +13,13 @@ export const FullBlog = ({blog} : {blog : Blog}) => {
             <div className="flex justify-center">
                 <div className="grid md:grid-cols-12 px-10 w-full space-y-10  max-w-screen-xl py-12">
                     <div className="col-span-8">
-                        <div className="md:text-5xl md:max-w-2xl text-3xl  font-extrabold">
+                        <div className="md:text-5xl md:max-w-2xl text-4xl  font-extrabold">
                             {blog.title}
                         </div>
                         <div className="text-slate-500 pt-2">
                             {formatter.format(blog.createdAt)}
                         </div>
-                        <div className="pt-4 md:max-w-sm max-w-sm md:text-lg text-sm">
+                        <div className="pt-4 max-w-2xl">
                             {blog.content}
                         </div>
                     </div>
