@@ -9,7 +9,6 @@ import Home from './pages/Home';
 import Appbar from './components/Appbar';
 import Footer from './components/Footer';
 import Error from './pages/Error'
-import Profile from './pages/Profile';
 function Layout() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -34,7 +33,6 @@ function App() {
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/blog/:id' element={<Blog />} />
             <Route path='/publish' element={<Publish />} />
-            <Route path='/profile' element={<Profile />} />
             <Route path='*' element={<Error />} />
           </Route>
         </Routes>

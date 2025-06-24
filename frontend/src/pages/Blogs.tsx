@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useContext, useEffect, useState } from "react";
 import BlogCard from "../components/BlogCard";
@@ -9,26 +8,19 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import  BlogSkeleton  from "../components/BlogSkeleton";
 
-import ReactPaginate from 'react-paginate';
-
-
 
 
 const Blogs = () => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
-  const limit = 10; // Number of blogs per page
-  const { loading, blogs, filteredBlogs, setFilteredBlogs } = useBlogs(currentPage, limit);
-
-
+  const {loggedInUser} = useContext(UserContext);
+  const { loading, blogs,filteredBlogs,setFilteredBlogs } = useBlogs();
   
   const[search,setSearch] = useState("");
-  
-  const {loggedInUser} = useContext(UserContext);
+
   useEffect(() => {
     if (!loggedInUser) {
-        navigate("/signin")
-    }; 
+        navigate("/signin"); // Redirect to login if not logged in
+    }
   }, [loggedInUser, navigate]);
 
   if (loading) {
@@ -70,13 +62,12 @@ const Blogs = () => {
                   authorName={blog.author.name || "Anonymous"}
                   title={blog.title}
                   content={blog.content}
-                  createdAt={blog.createdAt} // Example date
+                  publishedDate={"2nd Feb 2024"} // Example date
                 />
               ))
             ) : (
               <div className="text-center col-span-full">No blogs available</div>
             )}
-            
           </div>
         </div>
       </section>

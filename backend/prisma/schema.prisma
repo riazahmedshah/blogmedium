@@ -29,6 +29,4 @@ model Post {
   published Boolean @default(false)
   author User @relation(fields: [authorId], references: [id])
   authorId String
-  createdAt  DateTime @default(now())  // Stores the creation timestamp
-  updatedAt  DateTime @updatedAt        // Automatically updates on modification
 }

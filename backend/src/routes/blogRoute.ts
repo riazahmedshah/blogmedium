@@ -86,112 +86,27 @@ blogRoute.post('/', async (c) => {
   });
 
    // TODO: add pagination
-//    blogRoute.get('/bulk',async (c) => {
-//     const prisma = new PrismaClient({
-//         datasourceUrl: c.env?.DATABASE_URL,
-//     }).$extends(withAccelerate())
-
-//     const blogs = await prisma.post.findMany({
-//         select:{
-//             content: true,
-//             title: true,
-//             id:true,
-//             author:{
-//                 select:{
-//                     name:true
-//                 }
-//             }
-//         }
-//     });
-//     return c.json({
-//         blogs
-//     })
-//   });
-
-blogRoute.get('/bulk', async (c) => {
-    const prisma = new PrismaClient({
-        datasourceUrl: c.env?.DATABASE_URL,
-    }).$extends(withAccelerate());
-
-    // Get pagination parameters from query string, set defaults
-    const page = Number(c.req.query('page')) || 1;  // Get 'page' from query, default to 1
-    const limit = Number(c.req.query('limit')) || 5;  // Get 'limit' from query, default to 10
-
-    // Calculate the offset (where to start fetching)
-    const skip = (page - 1) * limit;
-
-    try {
-        const blogs = await prisma.post.findMany({
-            skip: skip, // Skip records based on current page
-            take: limit, // Number of records to fetch (limit)
-            select: {
-                content: true,
-                title: true,
-                id: true,
-                author: {
-                    select: {
-                        name: true
-                    }
-                }
-            }
-        });
-
-        // Get total count of records for pagination info
-        const totalRecords = await prisma.post.count();
-        const totalPages = Math.ceil(totalRecords / limit);
-
-        return c.json({
-            blogs,
-            pagination: {
-                totalRecords,  // Total number of records
-                totalPages,    // Total pages available
-                currentPage: page,
-                pageSize: limit
-            }
-        });
-
-    } catch (error) {
-        c.status(500);
-        return c.json({ msg: "Error while getting blogs" });
-    }
-});
-
-
-
-  blogRoute.get("/userblog", async (c) => {
-    const id = c.req.query("userId");  // Get ID from query params
-
-    if (!id) {
-        return c.json({ msg: "User ID is required" });
-    }
-
+   blogRoute.get('/bulk',async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env?.DATABASE_URL,
     }).$extends(withAccelerate())
 
-    try {
-        const blogs = await prisma.post.findMany({
-            where: { authorId: id },  // Assuming id is the user's ID
-            select: {
-                content: true,
-                title: true,
-                id: true,
-                author: { select: { name: true } }
+    const blogs = await prisma.post.findMany({
+        select:{
+            content: true,
+            title: true,
+            id:true,
+            author:{
+                select:{
+                    name:true
+                }
             }
-        });
-
-        if (!blogs) {
-            return c.json({ msg: "Blog not found" });
         }
-
-        return c.json({ blogs });
-
-    } catch (error) {
-        console.error("Error fetching blogs:", error);
-        return c.json({ msg: "Error while getting blogs" });
-    }
-});
-
+    });
+    return c.json({
+        blogs
+    })
+  });
 
 
   blogRoute.get('/:id',async (c) => {

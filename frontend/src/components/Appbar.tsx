@@ -52,11 +52,7 @@ const Appbar = () => {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator/>
                   <DropdownMenuItem onClick={removeToken}>Logout</DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link to="/profile">
-                      Profile
-                    </Link>
-                  </DropdownMenuItem>
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>}

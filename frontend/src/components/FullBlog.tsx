@@ -1,25 +1,20 @@
 
-import { formatter } from "@/types"
 import { Avatar } from "./BlogCard"
 import { Blog } from "./hooks/useBlogs"
 
-
-
 export const FullBlog = ({blog} : {blog : Blog}) => {
-    
-    
     return(
         <div>
             <div className="flex justify-center">
                 <div className="grid md:grid-cols-12 px-10 w-full space-y-10  max-w-screen-xl py-12">
                     <div className="col-span-8">
-                        <div className="md:text-5xl md:max-w-2xl text-4xl  font-extrabold">
+                        <div className="md:text-5xl text-4xl  font-extrabold">
                             {blog.title}
                         </div>
                         <div className="text-slate-500 pt-2">
-                            {formatter.format(blog.createdAt)}
+                            Post on 2nd December 2023
                         </div>
-                        <div className="pt-4 max-w-2xl">
+                        <div className="pt-4">
                             {blog.content}
                         </div>
                     </div>
