@@ -41,10 +41,6 @@ blogRoute.use('/*', async (c, next) => {
   })
 
 
- 
-
-
-
 blogRoute.post('/', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env?.DATABASE_URL,
