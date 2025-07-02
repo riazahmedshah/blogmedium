@@ -1,8 +1,12 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../components/UserContext";
+import DOMPurify from "dompurify";
+import JoditEditor from "jodit-react"
+// import ReactQuill from "react-quill"
+// import 'react-quill/dist/quill.snow.css';
 
 export const Publish = () => {
   const [title, setTitle] = useState("");
@@ -11,18 +15,22 @@ export const Publish = () => {
   const navigate = useNavigate();
   const{loggedInUser} = useContext(UserContext)
 
+  // console.log("TITLE", title);
+  console.log("DESCRIPTION", description);
+
   const handlePublish = async () => {
     if (!title || !description) {
       setError("Both title and content are required.");
       return;
     }
 
+
     try {
       const response = await axios.post(
         `${BACKEND_URL}/api/v1/blog`,
         {
           title,
-          content: description,
+          content: DOMPurify.sanitize(description),
         },
         {
           headers: {
@@ -39,7 +47,7 @@ export const Publish = () => {
 
   useEffect(() => {
       if (!loggedInUser) {
-          navigate("/signin"); // Redirect to login if not logged in
+          navigate("/signin");
       }
   }, [loggedInUser, navigate]);
 
@@ -56,7 +64,7 @@ export const Publish = () => {
           />
 
           {/* Description/Content Editor */}
-          <TextEditor onChange={(e) => setDescription(e.target.value)} />
+          <TextEditor onChange={(newDescription) => setDescription(newDescription)} />
 
           {/* Error Handling */}
           {error && <div className="text-red-500 mt-2">{error}</div>}
@@ -79,22 +87,22 @@ export const Publish = () => {
 function TextEditor({
   onChange,
 }: {
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange: (e: any) => void;
 }) {
   return (
     <div className="mt-2">
       <div className="w-full mb-4 ">
         <div className="flex items-center justify-between border rounded-lg">
-          <div className="my-2 bg-white rounded-b-lg w-full">
+          <div className="bg-white rounded-b-lg w-full">
             <label className="sr-only">Publish post</label>
-            <textarea
+            <JoditEditor 
               onChange={onChange}
-              id="editor"
-              rows={8}
-              className="focus:outline-none block w-full px-2 py-2 text-sm text-gray-800 bg-white border-0"
-              placeholder="Write an article..."
-              required
             />
+            {/* <ReactQuill
+              theme="snow"
+              onChange={onChange}
+            /> */}
           </div>
         </div>
       </div>

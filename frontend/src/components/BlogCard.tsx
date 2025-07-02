@@ -37,7 +37,7 @@ const BlogCard = ({authorName, title,content,publishedDate, id}:blogCard) => {
         </div>
         <div className="my-2 ">
             <h1 className="md:text-3xl text-xl font-bold md:font-semibold md:max-w-lg max-w-sm mb-2">{title.slice(0,30) + "..."}</h1>
-            <h3 className="md:max-w-lg max-w-xm text-sm font-normal">{content.slice(0,100) + "..."}</h3>
+            <h3 className="md:max-w-lg max-w-xm text-sm font-normal" dangerouslySetInnerHTML={{__html:content.slice(0,100) + "..."}}></h3>
         </div>
         <div className="mt-5 text-slate-400 text-xs">
             {`${Math.ceil(content.length / 100)} minute(s) read`}
