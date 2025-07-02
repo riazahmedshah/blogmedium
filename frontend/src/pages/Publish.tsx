@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../components/UserContext";
 import DOMPurify from "dompurify";
 import JoditEditor from "jodit-react"
-// import ReactQuill from "react-quill"
-// import 'react-quill/dist/quill.snow.css';
 
 export const Publish = () => {
   const [title, setTitle] = useState("");
