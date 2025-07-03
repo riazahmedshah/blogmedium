@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import FeatureCategory from "../components/FeatureCategory";
 import CarasoulCard from "../components/CarasoulCard";
+import Header from "../components/Header";
 // import { User2 } from "lucide-react";
 
 const AnimatedText = () => {
@@ -46,8 +47,9 @@ const Home = () => {
 
   return (
     <div className="bg-gray-300">
-    <FeatureCategory/>
-    <CarasoulCard/>
+      <Header/>
+      <FeatureCategory/>
+      <CarasoulCard/>
     {/* <header className="absolute z-10 w-full xl:px-28 px-4  shadow-sm top-0 left-0 right-0 mx-auto ">
         <nav className="max-w-screen-2xl w-full flex items-center justify-between container md:py-3 pt-4 pb-3  ">
            <Link to={"/"}><div className="text-4xl font-bold hover:text-green-700 font-mono">Word<span className="text-green-700">Nest</span></div></Link>  
