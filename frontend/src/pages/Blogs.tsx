@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import  BlogSkeleton  from "../components/BlogSkeleton";
+import FeatureCategory from "../components/FeatureCategory";
 
 
 
@@ -32,7 +33,7 @@ const Blogs = () => {
   return (
     <div className="min-h-screen">
       
-
+      <FeatureCategory/>
       {/* Blog Post Cards Section */}
       <section className="py-10">
         <div className="max-w-6xl mx-auto px-4">
@@ -62,7 +63,7 @@ const Blogs = () => {
                   authorName={blog.author.name || "Anonymous"}
                   title={blog.title}
                   content={blog.content}
-                  publishedDate={"2nd Feb 2024"} // Example date
+                  publishedDate={"2nd Feb 2024"}
                 />
               ))
             ) : (

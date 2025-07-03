@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 // import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 // import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu";
-import { Button, buttonVariants } from "../components/ui/button";
+import { Button } from "../components/ui/button";
+import FeatureCategory from "../components/FeatureCategory";
 // import { User2 } from "lucide-react";
 
 const AnimatedText = () => {
@@ -44,7 +45,8 @@ const Home = () => {
 
   return (
     <>
-    <header className="absolute z-10 w-full xl:px-28 px-4  shadow-sm top-0 left-0 right-0 mx-auto ">
+    <FeatureCategory/>
+    {/* <header className="absolute z-10 w-full xl:px-28 px-4  shadow-sm top-0 left-0 right-0 mx-auto ">
         <nav className="max-w-screen-2xl w-full flex items-center justify-between container md:py-3 pt-4 pb-3  ">
            <Link to={"/"}><div className="text-4xl font-bold hover:text-green-700 font-mono">Word<span className="text-green-700">Nest</span></div></Link>  
             
@@ -55,27 +57,9 @@ const Home = () => {
               <button className={buttonVariants()}>Get Started</button>
             </Link>
           </div> 
-          {/* // <div className="flex flex-row items-center">
-          //     <Link to={linkPath}>
-          //       <p className={`${buttonVariants({variant:"link"})} font-bold text-xl`}>{linkText}</p>
-          //     </Link>
-          //     <DropdownMenu>
-          //       <DropdownMenuTrigger asChild>
-          //         <Button className="rounded-full size-10" variant="outline">
-          //           <User2/>
-          //         </Button>
-          //       </DropdownMenuTrigger>
-          //       <DropdownMenuContent>
-          //         <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          //         <DropdownMenuSeparator/>
-          //         <DropdownMenuItem>Logout</DropdownMenuItem>
-          //         <DropdownMenuItem>Profile</DropdownMenuItem>
-          //       </DropdownMenuContent>
-          //     </DropdownMenu>
-          // </div> */}
           
         </nav>
-      </header>
+    </header> */}
     <div className="absolute md:pt-40 pt-32 min-h-screen w-full from-gray-100 via-green-300 to-green-500 bg-gradient-to-br container mx-auto px-6 xl:px-28">
       <div className="flex flex-col max-w-screen-lg justify-center mx-auto">
         <div>
@@ -95,6 +79,7 @@ const Home = () => {
           </Link>
         </div>
       </div>
+      
     </div>
     </>
   );
