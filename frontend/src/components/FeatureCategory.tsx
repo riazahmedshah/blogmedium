@@ -15,9 +15,12 @@ const FeatureCategory = () => {
                     <span>#</span>
                     {tag ? tag.toUpperCase() : "BLOGS"}
                 </h1>
-                <p className="text-3xl py-2 font-extralight text-[#FFFFFF]/50">
+                {tag ? <p className="text-3xl py-2 font-extralight text-[#FFFFFF]/50">
                     {`A collection of ${posts.length > 0 ? posts.length : 21} posts`}
+                </p> : <p className="text-3xl py-2 font-extralight text-[#FFFFFF]/50">
+                   An endless collection of learning
                 </p>
+                }
             </div>
             
             <Categoty categoryArray={categories}/>
