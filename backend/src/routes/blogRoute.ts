@@ -49,6 +49,7 @@ blogRoute.post('/', async (c) => {
     const body = await c.req.json();
     const blogCreate = await prisma.post.create({
         data: {
+            categoryId:body.categoryId,
             authorId : authorId,
             title : body.title,
             content : body.content
