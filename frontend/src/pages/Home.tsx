@@ -2,6 +2,7 @@ import FeatureCategory from "../components/FeatureCategory";
 import CarasoulCard from "../components/landing/CarasoulCard";
 import Header from "../components/landing/Header";
 import Footer from "../components/Footer";
+import FeatureArticle from "../components/landing/FeatureArticle";
 
 
 
@@ -10,6 +11,7 @@ const Home = () => {
     <div className="bg-gray-300">
       <Header/>
       <FeatureCategory/>
+      <FeatureArticle/>
       <CarasoulCard/>
       <Footer/>
     </div>
