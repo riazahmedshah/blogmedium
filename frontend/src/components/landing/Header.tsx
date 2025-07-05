@@ -1,5 +1,5 @@
 import { Bird } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const Header = () => {
     return(
@@ -14,7 +14,7 @@ const Header = () => {
                 </div>
                 <div className="p-2 flex items-center text-3xl font-mono font-bold gap-1">
                     <span>
-                        <Bird size={30}/>
+                        <Bird size={32}/>
                     </span>
                     <h1>WordNest</h1>
                 </div>

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import FeatureCategory from "../components/FeatureCategory";
 import CarasoulCard from "../components/CarasoulCard";
-import Header from "../components/Header";
+import Header from "../components/landing/Header";
 // import { User2 } from "lucide-react";
 
 const AnimatedText = () => {
