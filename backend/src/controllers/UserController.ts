@@ -16,13 +16,14 @@ export const CreateUser = async(c: Context) => {
         const isUserExist = await getUserByEmail(prisma,data.email);
         if(!isUserExist){
             const newUser = await createUser(prisma,body);
-            return ResponseHandler.created(c,newUser)
+            return ResponseHandler.created(c,{newUser})
         } else{
             return ResponseHandler.json(c,{
                 message:"USER_ALREADY_EXISTS"
             },403)
         }
     } catch (error) {
+        console.error(error);
         return ResponseHandler.error(c, error);
     }
     

@@ -4,13 +4,17 @@ import { ExtendedPrismaClient } from "../config/db";
 
 export async function createUser(
     prisma: ExtendedPrismaClient,
-    createUserInput: Prisma.UserCreateInput
+    createUserInput: Omit<Prisma.UserCreateInput, 'posts'>
 ){
     return await prisma.user.create({
-        data: createUserInput
+        data: {
+            name:createUserInput.name,
+            email:createUserInput.email,
+            password:createUserInput.password,
+            role:createUserInput.role,
+        }
     });
 }
-
 
 
 export async function getUserByEmail(

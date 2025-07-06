@@ -1,17 +1,11 @@
-import { PrismaClient } from "@prisma/client/edge";
-import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono }  from "hono"
-import { sign, verify } from "hono/jwt";
-import { signinInputs, signupInputs } from "../types/index";
+// import { sign, verify } from "hono/jwt";
+import { CreateUser } from "../controllers/UserController";
 
 
-export const userRoute = new Hono<{
-    Bindings :{
-        DATABASE_URL : string 
-    }
-}>();
+export const userRoute = new Hono();
 
-
+userRoute.post("/create", CreateUser)
 
 
     // userRoute.post('/signup',async (c) => {
