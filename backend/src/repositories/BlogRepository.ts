@@ -42,7 +42,6 @@ export async function updateBlog(
         data:{
             title: updateBlogInput.title,
             content: updateBlogInput.content,
-            category: updateBlogInput.category,
             published: true
         }
     });
