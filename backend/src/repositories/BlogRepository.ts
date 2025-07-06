@@ -9,35 +9,50 @@ export async function crateBlog(
         data: createBlogInput
     });
 }
-export async function getBlogs(
+
+export async function getAllBlogs(
     prisma : ExtendedPrismaClient,
-    createBlogInput: Prisma.PostCreateInput
 ){
-    return await prisma.post.create({
-        data: createBlogInput
-    });
+    return await prisma.post.findMany();
 }
+
 export async function getBlogById(
     prisma : ExtendedPrismaClient,
-    createBlogInput: Prisma.PostCreateInput
+    id:string
 ){
-    return await prisma.post.create({
-        data: createBlogInput
+    return await prisma.post.findUnique({
+        where:{
+            id
+        },
+        include:{
+            author:true
+        }
     });
 }
+
 export async function updateBlog(
     prisma : ExtendedPrismaClient,
-    createBlogInput: Prisma.PostCreateInput
+    updateBlogInput: Prisma.PostUpdateInput
 ){
-    return await prisma.post.create({
-        data: createBlogInput
+    return await prisma.post.update({
+        where:{
+            id:updateBlogInput.id,
+        },
+        data:{
+            title: updateBlogInput.title,
+            content: updateBlogInput.content,
+            catrgory: updateBlogInput.catrgory,
+            published: true
+        }
     });
 }
 export async function deleteBlog(
     prisma : ExtendedPrismaClient,
-    createBlogInput: Prisma.PostCreateInput
+    id:string
 ){
-    return await prisma.post.create({
-        data: createBlogInput
+    return await prisma.post.delete({
+        where:{
+            id
+        }
     });
 }
