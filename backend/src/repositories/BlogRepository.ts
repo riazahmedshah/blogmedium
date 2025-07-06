@@ -32,16 +32,17 @@ export async function getBlogById(
 
 export async function updateBlog(
     prisma : ExtendedPrismaClient,
-    updateBlogInput: Prisma.PostUpdateInput
+    updateBlogInput: Prisma.PostUpdateInput,
+    id:string
 ){
     return await prisma.post.update({
         where:{
-            id:updateBlogInput.id,
+            id
         },
         data:{
             title: updateBlogInput.title,
             content: updateBlogInput.content,
-            catrgory: updateBlogInput.catrgory,
+            category: updateBlogInput.category,
             published: true
         }
     });

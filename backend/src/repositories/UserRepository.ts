@@ -13,7 +13,7 @@ export async function createUser(
 
 export async function getUserById(
     prisma: ExtendedPrismaClient,
-    id:string
+    id:number
 ){
     return await prisma.user.findFirst({
         where: {
@@ -24,11 +24,12 @@ export async function getUserById(
 
 export async function updateUser(
     prisma: ExtendedPrismaClient,
-    updateUserInput: Prisma.UserUpdateInput
+    updateUserInput: Prisma.UserUpdateInput,
+    id: number
 ){
     return await prisma.user.update({
         where: {
-            id:updateUserInput.id
+            id
         },
         data:{
             name:updateUserInput.name,
@@ -39,7 +40,7 @@ export async function updateUser(
 
 export async function deleteUser(
     prisma: ExtendedPrismaClient,
-    id:string
+    id:number
 ){
     return await prisma.user.delete({
         where: {
