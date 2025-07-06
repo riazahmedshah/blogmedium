@@ -11,6 +11,20 @@ export async function createUser(
     });
 }
 
+
+
+export async function getUserByEmail(
+    prisma: ExtendedPrismaClient,
+    email:string
+){
+    return await prisma.user.findFirst({
+        where: {
+            email
+        }
+    });
+}
+
+
 export async function getUserById(
     prisma: ExtendedPrismaClient,
     id:number
