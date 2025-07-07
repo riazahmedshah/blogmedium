@@ -2,9 +2,9 @@ import { Context } from "hono";
 import bcrypt from "bcryptjs"
 import {sign} from "hono/jwt"
 
-import { SigninSchema, UserSchema } from "../schemas/userSchema";
+import { SigninSchema, UpdateUserSchema, UserSchema } from "../schemas/userSchema";
 import { ResponseHandler } from "../utils/ResponseHandler";
-import { createUser, getUserByEmail } from "../repositories/UserRepository";
+import { createUser, getUserByEmail, updateUser } from "../repositories/UserRepository";
 import { createPrismaClient } from "../config/db";
 
 export const CreateUser = async(c: Context) => {
@@ -68,8 +68,18 @@ export const login = async (c:Context) => {
 }
 
 
-export const updateUser = async (c:Context) => {
-    const userId = c.get("userId")
-    console.log(userId);
-    return c.text("Done");
+export const UpdateUser = async (c:Context) => {
+    const userId = c.get("userId");
+    const body = await c.req.json();
+    const {success, data, error} = UpdateUserSchema.safeParse(body);
+    if(!success){
+        return ResponseHandler.zodError(c, error.errors);
+    }
+    try {
+        const prisma  = createPrismaClient(c.env?.DATABASE_URL);
+        const updatedUser = await updateUser(prisma, data, userId);
+        return ResponseHandler.json(c,updatedUser);
+    } catch (error) {
+        return ResponseHandler.error(c,error);
+    }
 }
