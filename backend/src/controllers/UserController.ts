@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 import {sign} from "hono/jwt"
 
 import { SigninSchema, UserSchema } from "../schemas/userSchema";
@@ -51,7 +51,7 @@ export const login = async (c:Context) => {
 
             const token = await sign({
                 id:user.id,
-                exp: Math.floor(Date.now()/1000) + 60 * 5
+                exp: Math.floor(Date.now()/1000) + 60 * 60
             },"secret",);
 
             return ResponseHandler.json(c,{token})
@@ -65,4 +65,11 @@ export const login = async (c:Context) => {
         console.error(error)
         return ResponseHandler.error(c,error)
     }
+}
+
+
+export const updateUser = async (c:Context) => {
+    const userId = c.get("userId")
+    console.log(userId);
+    return c.text("Done");
 }
