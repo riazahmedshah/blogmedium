@@ -7,7 +7,7 @@ import { ResponseHandler } from "../utils/ResponseHandler";
 import { createUser, getUserByEmail, updateUser } from "../repositories/UserRepository";
 import { createPrismaClient } from "../config/db";
 
-export const CreateUser = async(c: Context) => {
+export const create = async(c: Context) => {
     const body = await c.req.json();
 
     const {success, data, error} = UserSchema.safeParse(body);
@@ -68,7 +68,7 @@ export const login = async (c:Context) => {
 }
 
 
-export const UpdateUser = async (c:Context) => {
+export const update = async (c:Context) => {
     const userId = c.get("userId");
     const body = await c.req.json();
     const {success, data, error} = UpdateUserSchema.safeParse(body);

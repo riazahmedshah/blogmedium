@@ -1,12 +1,17 @@
 import { Prisma } from "@prisma/client";
 import { ExtendedPrismaClient } from "../config/db";
 
-export async function crateBlog(
+export async function createBlog(
     prisma : ExtendedPrismaClient,
-    createBlogInput: Prisma.PostCreateInput
+    createBlogInput: Prisma.PostUncheckedCreateInput
 ){
     return await prisma.post.create({
-        data: createBlogInput
+        data:{
+            title:createBlogInput.title,
+            content:createBlogInput.content,
+            categoryId:createBlogInput.categoryId,
+            authorId:createBlogInput.authorId
+        }
     });
 }
 
@@ -32,8 +37,8 @@ export async function getBlogById(
 
 export async function updateBlog(
     prisma : ExtendedPrismaClient,
-    updateBlogInput: Prisma.PostUpdateInput,
-    id:string
+    id:string,
+    updateBlogInput: Prisma.PostUpdateInput
 ){
     return await prisma.post.update({
         where:{
