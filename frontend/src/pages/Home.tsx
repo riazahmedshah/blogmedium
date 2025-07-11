@@ -1,4 +1,4 @@
-import FeatureCategory from "../components/FeatureCategory";
+import FeatureCategory from "../components/landing/FeatureCategory";
 import CarasoulCard from "../components/landing/CarasoulCard";
 import Header from "../components/landing/Header";
 import Footer from "../components/Footer";

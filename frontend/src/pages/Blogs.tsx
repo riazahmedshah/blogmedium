@@ -7,7 +7,7 @@ import { useBlogs } from "../components/hooks/useBlogs";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import  BlogSkeleton  from "../components/BlogSkeleton";
-import FeatureCategory from "../components/FeatureCategory";
+import FeatureCategory from "../components/landing/FeatureCategory";
 
 
 
