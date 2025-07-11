@@ -26,8 +26,8 @@ function App() {
     <UserProvider>
       <BrowserRouter basename="/">
         <Routes>
-            <Route path='/signup' element={<Auth type='Signup' />} />
-            <Route path='/signin' element={<Auth type='Signin' />} />
+            <Route path='/auth/register' element={<Auth type='Signup' />} />
+            <Route path='/auth/login' element={<Auth type='Signin' />} />
             <Route path='/' element={<Home />} />
           <Route element={<Layout />}>
             <Route path='/blogs' element={<Blogs />} />

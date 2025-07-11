@@ -1,5 +1,6 @@
 import { Bird } from "lucide-react";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     return(
@@ -19,8 +20,16 @@ const Header = () => {
                     <h1>WordNest</h1>
                 </div>
                 <div className="flex items-center gap-2 px-4">
-                    <Button variant="ghost">Explore</Button>
-                    <Button className="px-10">Sign in</Button>
+                    <Button asChild variant="ghost">
+                        <Link to="/blogs">
+                            Explore
+                        </Link>
+                    </Button>
+                    <Button asChild className="px-10">
+                        <Link to="/auth/login">
+                            Login
+                        </Link>
+                    </Button>
                 </div>
             </div>
         </header>
