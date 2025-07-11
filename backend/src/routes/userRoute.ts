@@ -1,7 +1,8 @@
 import { Hono }  from "hono"
 
-import { create, login, update } from "../controllers/UserController";
+import { create, login } from "../controllers/UserController";
 import { authMiddleware } from "../middlewares/authMiddleware";
+import { update } from "../controllers/UpdateUserController";
 
 
 export const userRoute = new Hono();

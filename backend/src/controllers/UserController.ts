@@ -66,20 +66,3 @@ export const login = async (c:Context) => {
         return ResponseHandler.error(c,error)
     }
 }
-
-
-export const update = async (c:Context) => {
-    const userId = c.get("userId");
-    const body = await c.req.json();
-    const {success, data, error} = UpdateUserSchema.safeParse(body);
-    if(!success){
-        return ResponseHandler.zodError(c, error.errors);
-    }
-    try {
-        const prisma  = createPrismaClient(c.env?.DATABASE_URL);
-        const updatedUser = await updateUser(prisma, data, userId);
-        return ResponseHandler.json(c,updatedUser);
-    } catch (error) {
-        return ResponseHandler.error(c,error);
-    }
-}

@@ -12,7 +12,7 @@ compatibility_date = "2024-08-11"
 # id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 [[r2_buckets]]
-    binding = "BLOG_IMAGES"
+    binding = "MY_BUCKET_IMAGES"
     bucket_name = "my-blog-images"
 
 # [[d1_databases]]
