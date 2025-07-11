@@ -26,8 +26,6 @@ export const update = async (c: Context) => {
         return ResponseHandler.zodError(c, isValidPhotoSChema.error.errors);
     }
 
-
-
     const r2Client = getR2Client({
         CLOUDFLARE_ACCOUNT_ID: c.env.CLOUDFLARE_ACCOUNT_ID,
         R2_ACCESS_KEY_ID: c.env.R2_ACCESS_KEY_ID,
@@ -50,9 +48,6 @@ export const update = async (c: Context) => {
 
         const uploadResponse = await r2Client.send(command);
         console.log('R2 Upload successful:', uploadResponse);
-
-        
-
 
         const publicUrl = `https://pub-${c.env.CLOUDFLARE_ACCOUNT_ID}.r2.dev/${objectKey}`;
 
