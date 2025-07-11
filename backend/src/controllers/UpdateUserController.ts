@@ -9,8 +9,8 @@ import { createPrismaClient } from "../config/db";
 export const update = async (c: Context) => {
     const userId = c.get("userId");
     const formData = await c.req.parseBody();
-    const profilePhoto = formData['Image'];
-    const updateData = {
+    const profilePhoto = formData['profile-image'];
+    const dataToUpdate = {
         name: formData['name'] as string,
         role: formData['role'] as string,
     }
@@ -26,17 +26,18 @@ export const update = async (c: Context) => {
         return ResponseHandler.zodError(c, isValidPhotoSChema.error.errors);
     }
 
-    const r2Client = getR2Client({
-        CLOUDFLARE_ACCOUNT_ID: c.env.CLOUDFLARE_ACCOUNT_ID,
-        R2_ACCESS_KEY_ID: c.env.R2_ACCESS_KEY_ID,
-        R2_SECRET_ACCESS_KEY: c.env.R2_SECRET_ACCESS_KEY,
-    });
+    
 
-    const { success, data, error } = UpdateUserSchema.safeParse(updateData);
+    const { success, data, error } = UpdateUserSchema.safeParse(dataToUpdate);
     if (!success) {
         return ResponseHandler.zodError(c, error.errors);
     }
     try {
+        const r2Client = getR2Client({
+            CLOUDFLARE_ACCOUNT_ID: c.env.CLOUDFLARE_ACCOUNT_ID,
+            R2_ACCESS_KEY_ID: c.env.R2_ACCESS_KEY_ID,
+            R2_SECRET_ACCESS_KEY: c.env.R2_SECRET_ACCESS_KEY,
+        });
         const objectKey = `profile_images/${crypto.randomUUID()}-${file.name.replace(/\s+/g, '_')}`;
 
         const command = new PutObjectCommand({
@@ -47,7 +48,7 @@ export const update = async (c: Context) => {
         });
 
         const uploadResponse = await r2Client.send(command);
-        console.log('R2 Upload successful:', uploadResponse);
+        console.log('R2 profile_image Upload successful:', uploadResponse);
 
         const publicUrl = `https://pub-${c.env.CLOUDFLARE_ACCOUNT_ID}.r2.dev/${objectKey}`;
 

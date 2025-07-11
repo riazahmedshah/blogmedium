@@ -7,6 +7,7 @@ export async function createBlog(
 ){
     return await prisma.post.create({
         data:{
+            image:createBlogInput.image,
             title:createBlogInput.title,
             content:createBlogInput.content,
             categoryId:createBlogInput.categoryId,
