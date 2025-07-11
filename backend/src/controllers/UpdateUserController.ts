@@ -5,8 +5,9 @@ import { userProfilePhotoSchema } from "../schemas/userSchema";
 import { ResponseHandler } from "../utils/ResponseHandler";
 
 export const update = async (c:Context) => {
-    const body = await c.req.parseBody();
-    const profilePhoto = body['Image'];
+    const body = await c.req.json();
+    const filebody = await c.req.parseBody();
+    const profilePhoto = filebody['Image'];
 
     if (!profilePhoto || !(profilePhoto instanceof File)) {
         return c.json({ error: 'No profile photo found or invalid file type provided.' }, 400);

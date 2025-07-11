@@ -51,7 +51,9 @@ export async function updateUser(
         },
         data:{
             name:updateUserInput.name,
-            role:updateUserInput.role
+            role:updateUserInput.role,
+            profilePhoto:updateUserInput.profilePhoto
+
         }
     });
 }

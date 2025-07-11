@@ -19,7 +19,8 @@ export type SigninInput = z.infer<typeof SigninSchema>
 
 export const UpdateUserSchema = z.object({
     name:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters").optional(),
-    role:z.string().optional()
+    role:z.string().optional(),
+    profilePhoto:z.string().optional(),
 });
 
 export const userProfilePhotoSchema = z.object({
