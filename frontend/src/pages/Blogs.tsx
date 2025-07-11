@@ -1,9 +1,9 @@
 
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import BlogCard from "../components/BlogCard";
 import { useBlogs } from "../components/hooks/useBlogs";
-import UserContext from "../components/UserContext";
-import { useNavigate } from "react-router-dom";
+// import UserContext from "../components/UserContext";
+// import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import  BlogSkeleton  from "../components/BlogSkeleton";
@@ -12,17 +12,17 @@ import FeatureCategory from "../components/FeatureCategory";
 
 
 const Blogs = () => {
-  const navigate = useNavigate();
-  const {loggedInUser} = useContext(UserContext);
+  // const navigate = useNavigate();
+  // const {loggedInUser} = useContext(UserContext);
   const { loading, blogs,filteredBlogs,setFilteredBlogs } = useBlogs();
   
   const[search,setSearch] = useState("");
 
-  useEffect(() => {
-    if (!loggedInUser) {
-        navigate("/signin"); // Redirect to login if not logged in
-    }
-  }, [loggedInUser, navigate]);
+  // useEffect(() => {
+  //   if (!loggedInUser) {
+  //       navigate("/signin"); // Redirect to login if not logged in
+  //   }
+  // }, [loggedInUser, navigate]);
 
   if (loading) {
     return (

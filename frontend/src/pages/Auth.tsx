@@ -1,21 +1,16 @@
-import Quote from "../components/Quote"
-import Signin from "../components/Signin"
-import Signup from "../components/Signup"
+// import Quote from "../components/Quote"
+import { RegisterForm } from "../components/auth/register-form"
+// import Signin from "../components/Signin"
+// import Signup from "../components/Signup"
 
 
 const Auth = ({type}: {type:"Signup" |  "Signin"}) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div>
-          {
-            type === "Signup" ? <Signup type="Signup"/> : <Signin type="Signin"/>
-          }
-            
-        </div>
-        <div className="hidden sm:block"> 
-            <Quote/>
-        </div>
-    </div>
+    <section className="w-full">
+      <div className="h-screen flex items-center justify-center  bg-[#3B3B4F]">
+        {type === "Signup" ? <RegisterForm/> : ""}
+      </div>
+    </section>
   )
 }
 
