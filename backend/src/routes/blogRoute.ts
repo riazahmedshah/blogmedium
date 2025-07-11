@@ -9,9 +9,3 @@ blogRoute.put("/update/:id", update);
 blogRoute.get("/bulk", getBulk);
 blogRoute.get("/:id", get);
 blogRoute.delete("/delete/:id",Delete);
-
-
-
-
- 
-
