@@ -23,14 +23,13 @@ export const UpdateUserSchema = z.object({
     profilePhoto:z.string().optional(),
 });
 
-export const userProfilePhotoSchema = z.object({
-    profilePhoto: z.object({
-        mimetype: z.string().refine((mimetype) => {
-            return ["image/jpeg", "image/png"].includes(mimetype)
-        },"PICTURE_MUST_BE_JPG_JPEG_PNG"),
-        size: z.number().max(5 * 1024 * 1024, "LIMIT_FILE_SIZE")
-    })
-});
+const MB_TO_BYTES = 1024 * 1024;
+
+export const userProfilePhotoSchema = z.instanceof(File).refine((file) => {
+    ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(file.type)
+}, "PICTURE_MUST_BE_JPG_JPEG_PNG, WEBP, PNG").refine((file) => {
+    file.size <= 5 * MB_TO_BYTES
+},"LIMIT_FILE_SIZE (Max 50MB)")
 
 export type UpdateUserInput = z.infer<typeof UpdateUserSchema> 
 
