@@ -26,10 +26,10 @@ export const UpdateUserSchema = z.object({
 const MB_TO_BYTES = 1024 * 1024;
 
 export const userProfilePhotoSchema = z.instanceof(File).refine((file) => {
-    ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(file.type)
+    return ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(file.type)
 }, "PICTURE_MUST_BE_JPG_JPEG_PNG, WEBP, PNG").refine((file) => {
-    file.size <= 5 * MB_TO_BYTES
-},"LIMIT_FILE_SIZE (Max 50MB)")
+    return file.size <= 5 * MB_TO_BYTES
+},"LIMIT_FILE_SIZE (Max 5MB)")
 
 export type UpdateUserInput = z.infer<typeof UpdateUserSchema> 
 

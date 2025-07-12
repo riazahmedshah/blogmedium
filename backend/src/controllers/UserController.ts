@@ -2,9 +2,9 @@ import { Context } from "hono";
 import bcrypt from "bcryptjs"
 import {sign} from "hono/jwt"
 
-import { SigninSchema, UpdateUserSchema, UserSchema } from "../schemas/userSchema";
+import { SigninSchema, UserSchema } from "../schemas/userSchema";
 import { ResponseHandler } from "../utils/ResponseHandler";
-import { createUser, getUserByEmail, updateUser } from "../repositories/UserRepository";
+import { createUser, getUserByEmail } from "../repositories/UserRepository";
 import { createPrismaClient } from "../config/db";
 
 export const create = async(c: Context) => {

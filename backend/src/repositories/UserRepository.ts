@@ -54,6 +54,12 @@ export async function updateUser(
             role:updateUserInput.role,
             profilePhoto:updateUserInput.profilePhoto
 
+        },
+        select:{
+            email:true,
+            name:true,
+            role:true,
+            profilePhoto:true
         }
     });
 }

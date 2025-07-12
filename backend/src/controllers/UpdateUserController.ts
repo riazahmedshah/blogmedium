@@ -9,7 +9,7 @@ import { createPrismaClient } from "../config/db";
 export const update = async (c: Context) => {
     const userId = c.get("userId");
     const formData = await c.req.parseBody();
-    const profilePhoto = formData['profile-image'];
+    const profilePhoto = formData['profilePhoto'];
     const dataToUpdate = {
         name: formData['name'] as string,
         role: formData['role'] as string,
@@ -41,7 +41,7 @@ export const update = async (c: Context) => {
         const objectKey = `profile_images/${crypto.randomUUID()}-${file.name.replace(/\s+/g, '_')}`;
 
         const command = new PutObjectCommand({
-            Bucket: c.env.MY_BUCKET_IMAGES.bucketName,
+            Bucket: "my-blog-images",
             Key: objectKey,
             Body: await file.arrayBuffer(),
             ContentType: file.type,
@@ -50,7 +50,7 @@ export const update = async (c: Context) => {
         const uploadResponse = await r2Client.send(command);
         console.log('R2 profile_image Upload successful:', uploadResponse);
 
-        const publicUrl = `https://pub-${c.env.CLOUDFLARE_ACCOUNT_ID}.r2.dev/${objectKey}`;
+        const publicUrl = `https://pub-51cab5eaf8c3402d808557eeaf36d4d1.r2.dev/${objectKey}`;
 
         const prisma = createPrismaClient(c.env?.DATABASE_URL);
         const updatedUser = await updateUser(prisma, { ...data, profilePhoto: publicUrl }, userId);
