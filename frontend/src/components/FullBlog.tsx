@@ -1,6 +1,6 @@
 
 import { Avatar } from "./BlogCard"
-import { Blog } from "./hooks/useBlogs"
+import { Blog } from "../hooks/useBlogs"
 
 export const FullBlog = ({blog} : {blog : Blog}) => {
     return(

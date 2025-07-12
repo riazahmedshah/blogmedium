@@ -1,11 +1,3 @@
-// import { defineConfig } from 'vite'
-// import react from '@vitejs/plugin-react'
-
-// // https://vitejs.dev/config/
-// export default defineConfig({
-//   plugins: [react()],
-// })
-
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath } from 'url';
@@ -20,6 +12,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@ui':path.resolve(__dirname, './src/components/ui'),
+      '@modules':path.resolve(__dirname,'./src/modules'),
+      '@schemas':path.resolve(__dirname, './src/schemas'),
     },
   },
 });

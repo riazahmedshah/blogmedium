@@ -1,7 +1,7 @@
 import { User2 } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { StarRating } from "./StarRating";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@ui/carousel";
 
 interface Review {
     username: string;
@@ -50,7 +50,7 @@ const reviewPost: Review[] = [
 ];
 
 
-const CarasoulCard = () => {
+export const CarasoulCard = () => {
     return (
         <div className="px-4 py-8">
             <Carousel
@@ -93,5 +93,3 @@ const CarasoulCard = () => {
         </div>
     );
 };
-
-export default CarasoulCard;

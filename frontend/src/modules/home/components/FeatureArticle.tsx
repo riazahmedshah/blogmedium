@@ -1,7 +1,7 @@
 import { ArrowRight, Calendar, Clock, User2 } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 
-const FeatureArticle = () => {
+export const FeatureArticle = () => {
     return(
         <div className="max-w-6xl mx-auto mt-10 mb-8">
             <div className="flex items-center h-24 bg-[#3B3B4F] text-[#D0D0D5]">
@@ -50,5 +50,3 @@ const FeatureArticle = () => {
         </div>
     )
 }
-
-export default FeatureArticle;

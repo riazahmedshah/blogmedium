@@ -3,7 +3,7 @@ import Categoty from "./CtegoryComponent";
 
 const categories = ["computer science", "global market", "What's new in tech market","full stack", "tech","personal projects","javascript"];
 
-const FeatureCategory = () => {
+export const FeatureCategory = () => {
     const {pathname} = useLocation();
     const category = pathname.split("/").filter(Boolean);
     const tag = category[category.length - 1];
@@ -28,6 +28,4 @@ const FeatureCategory = () => {
         </div>
     )
 }
-
-export default FeatureCategory;
 

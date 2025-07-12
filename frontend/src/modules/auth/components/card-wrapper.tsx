@@ -1,4 +1,4 @@
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card"
+import { Card, CardContent, CardFooter, CardHeader } from "@ui/card"
 import { AuthHeader } from "./auth-header"
 import { BackButton } from "./back-button"
 

@@ -2,7 +2,7 @@ interface CategoryProps {
   categoryArray: string[];
 }
 
-const Categoty: React.FC<CategoryProps> = ({categoryArray}) => {
+export const Categoty: React.FC<CategoryProps> = ({categoryArray}) => {
     return(
         <div className=" max-w-2xl mx-auto">
             <div className="flex items-center justify-center flex-wrap">
@@ -20,5 +20,3 @@ const Categoty: React.FC<CategoryProps> = ({categoryArray}) => {
         </div>
     )
 }
-
-export default Categoty;

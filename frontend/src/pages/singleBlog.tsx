@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { useBlog } from "../components/hooks/useBlogs"
+import { useBlog } from "../hooks/useBlogs"
 import { FullBlog } from "../components/FullBlog";
 import { useContext, useEffect } from "react";
 import UserContext from "../components/UserContext";

@@ -1,8 +1,8 @@
 import { Bird } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@ui/button";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+export const Header = () => {
     return(
         <header className="sticky top-0 z-50 bg-blue-950 text-white h-12">
             <div className="flex items-center justify-between h-full">
@@ -35,5 +35,3 @@ const Header = () => {
         </header>
     )
 }
-
-export default Header;

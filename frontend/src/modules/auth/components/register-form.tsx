@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@ui/form"
 import { CardWrapper } from "./card-wrapper"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { registerSchema } from "../../schemas/authSchema"
-import { Input } from "../ui/input"
-import { Button } from "../ui/button"
+import { registerSchema } from "@schemas/authSchema"
+import { Input } from "@ui/input"
+import { Button } from "@ui/button"
 
 export const RegisterForm = () => {
 

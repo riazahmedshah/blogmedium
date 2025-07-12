@@ -1,13 +1,12 @@
 
 import { useState } from "react";
 import BlogCard from "../components/BlogCard";
-import { useBlogs } from "../components/hooks/useBlogs";
+import { useBlogs } from "../hooks/useBlogs";
 // import UserContext from "../components/UserContext";
 // import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import  BlogSkeleton  from "../components/BlogSkeleton";
-import FeatureCategory from "../components/landing/FeatureCategory";
 
 
 
@@ -32,8 +31,6 @@ const Blogs = () => {
 
   return (
     <div className="min-h-screen">
-      
-      <FeatureCategory/>
       {/* Blog Post Cards Section */}
       <section className="py-10">
         <div className="max-w-6xl mx-auto px-4">

@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
 import './App.css';
-import Auth from './pages/Auth';
 import Blogs from './pages/Blogs';
 import { Blog } from './pages/singleBlog';
 import { Publish } from './pages/Publish';
-import { UserProvider } from './components/UserContext';
-import Home from './pages/Home';
 import Appbar from './components/Appbar';
 import Footer from './components/Footer';
 import Error from './pages/Error'
+import LandingPage from '@modules/home/pages/landingPage';
+import SignupPage from '@modules/auth/pages/SignupPage';
+import LoginPage from '@modules/auth/pages/loginPage';
 function Layout() {
   return (
     <div className="min-h-screen flex flex-col font-sans">
@@ -23,12 +23,11 @@ function Layout() {
 
 function App() {
   return (
-    <UserProvider>
       <BrowserRouter basename="/">
         <Routes>
-            <Route path='/auth/register' element={<Auth type='Signup' />} />
-            <Route path='/auth/login' element={<Auth type='Signin' />} />
-            <Route path='/' element={<Home />} />
+            <Route path='/auth/register' element={<SignupPage type='Signup' />} />
+            <Route path='/auth/login' element={<LoginPage type='Signin' />} />
+            <Route path='/' element={<LandingPage />} />
           <Route element={<Layout />}>
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/blog/:id' element={<Blog />} />
@@ -37,7 +36,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </UserProvider>
   );
 }
 
