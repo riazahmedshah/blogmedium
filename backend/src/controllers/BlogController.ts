@@ -9,7 +9,7 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 export const create = async (c:Context) => {
     const formData = await c.req.parseBody();
 
-    const postImage = formData['post-image'];
+    const postImage = formData['postImage'];
 
     if(!postImage || !(postImage instanceof File)){
         return c.json({ 
