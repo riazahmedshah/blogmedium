@@ -1,11 +1,12 @@
 import { Hono } from "hono";
 import { create, Delete, get, getBulk, update } from "../controllers/BlogController";
+import { authMiddleware } from "../middlewares/authMiddleware";
 
 
 export const blogRoute = new Hono();
 
-blogRoute.post("/create", create);
-blogRoute.put("/update/:id", update);
 blogRoute.get("/bulk", getBulk);
-blogRoute.get("/:id", get);
-blogRoute.delete("/delete/:id",Delete);
+blogRoute.post("/create", authMiddleware, create);
+blogRoute.put("/update/:id", authMiddleware, update);
+blogRoute.get("/:id", authMiddleware, get);
+blogRoute.delete("/delete/:id",authMiddleware, Delete);

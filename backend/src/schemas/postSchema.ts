@@ -12,9 +12,9 @@ export const postImageSchema = z.instanceof(File)
 export const PostSchema = z.object({
     title:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters"),
     content:z.string().min(10, "Name must be atleast 2 characters"), 
-    published :z.boolean().optional(),
-    authorId:z.number().positive(),
-    categoryId:z.number().positive(),
+    published :z.coerce.boolean().optional(),
+    authorId:z.coerce.number().positive(),
+    categoryId:z.coerce.number().positive(),
     image:z.string().optional()
 })
 
