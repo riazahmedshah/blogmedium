@@ -8,14 +8,12 @@ export const UserSchema = z.object({
     role:z.string().optional()
 });
 
-export type SignupInput = z.infer<typeof UserSchema> 
 
 export const SigninSchema = z.object({
     email:z.string().email("Email is Required"),
     password:z.string().length(6,"password must be 6 charecters only"),
 })
 
-export type SigninInput = z.infer<typeof SigninSchema>
 
 export const UpdateUserSchema = z.object({
     name:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters").optional(),
@@ -31,5 +29,4 @@ export const userProfilePhotoSchema = z.instanceof(File).refine((file) => {
     return file.size <= 5 * MB_TO_BYTES
 },"LIMIT_FILE_SIZE (Max 5MB)")
 
-export type UpdateUserInput = z.infer<typeof UpdateUserSchema> 
 

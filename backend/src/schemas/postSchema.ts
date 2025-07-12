@@ -7,7 +7,9 @@ export const postImageSchema = z.instanceof(File)
       const ACCEPTED_MIME_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
       return ACCEPTED_MIME_TYPES.includes(file.type);
   }, "PICTURE_MUST_BE_JPG_JPEG_PNG, WEBP, PNG")
-  .refine(file => file.size <= 500 * MB_TO_BYTES, "LIMIT_FILE_SIZE (Max 500MB)");
+  .refine((file) => {
+    return file.size <= 500 * MB_TO_BYTES
+}, "LIMIT_FILE_SIZE (Max 500MB)");
 
 export const PostSchema = z.object({
     title:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters"),
@@ -18,12 +20,9 @@ export const PostSchema = z.object({
     image:z.string().optional()
 })
 
-export type CreateBlogInput = z.infer<typeof PostSchema>
 
 export const UpdatePostSchema = z.object({
     tile:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters"),
     content:z.string().min(10, "Name must be atleast 2 characters"), 
     published :z.boolean().optional(),
 })
-
-export type UpdateBlogInput = z.infer<typeof UpdatePostSchema>

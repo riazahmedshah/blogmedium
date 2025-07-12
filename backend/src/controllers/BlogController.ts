@@ -45,24 +45,26 @@ export const create = async (c:Context) => {
 
         const objectKey = `post_images/${crypto.randomUUID()}-${file.name.replace(/\s+/g, '_')}}`;
 
+        const fileArrayBuffer = await file.arrayBuffer();
+        const fileUnit8Array = new Uint8Array(fileArrayBuffer);
         const cammand = new PutObjectCommand({
-            Bucket:c.env.MY_BUCKET_IMAGES,
+            Bucket:"my-blog-images",
             Key:objectKey,
-            Body: await file.arrayBuffer(),
+            Body: fileUnit8Array,
             ContentType: file.type
         });
 
         const uploadResponse = await r2Client.send(cammand);
         console.log('R2 post_img Upload successful:', uploadResponse);
-        const publicUrl = `https://pub-${c.env.CLOUDFLARE_ACCOUNT_ID}.r2.dev/${objectKey}`;
+        const publicUrl = `https://pub-51cab5eaf8c3402d808557eeaf36d4d1.r2.dev/${objectKey}`;
 
         const prisma = createPrismaClient(c.env?.DATABASE_URL);
         const blog = await createBlog(prisma,{
             image:publicUrl,
             title: data.title,
             content: data.content,
-            authorId:Number(data.authorId),
-            categoryId:Number(data.categoryId)
+            authorId:data.authorId,
+            categoryId:data.categoryId
         });
         return ResponseHandler.created(c,{
             blog:blog,

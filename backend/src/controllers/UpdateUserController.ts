@@ -40,10 +40,12 @@ export const update = async (c: Context) => {
         });
         const objectKey = `profile_images/${crypto.randomUUID()}-${file.name.replace(/\s+/g, '_')}`;
 
+        const fileArrayBuffer = await file.arrayBuffer();
+        const fileUnit8Array = new Uint8Array(fileArrayBuffer);
         const command = new PutObjectCommand({
             Bucket: "my-blog-images",
             Key: objectKey,
-            Body: await file.arrayBuffer(),
+            Body: fileUnit8Array,
             ContentType: file.type,
         });
 
