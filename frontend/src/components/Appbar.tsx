@@ -1,7 +1,7 @@
 
-import { useContext } from "react"
+// import { useContext } from "react"
 import { Link, useLocation } from "react-router-dom"
-import UserContext from "./UserContext"
+// import UserContext from "./UserContext"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Button, buttonVariants } from "./ui/button";
 import { User2 } from "lucide-react";
@@ -17,12 +17,12 @@ const Appbar = () => {
   const linkPath = location.pathname === "/blogs" ? "/publish" : "/blogs";
   const linkText = location.pathname === "/blogs" ? "Publish" : "Blogs";
 
-  const {loggedInUser, setLoggedInUser} = useContext(UserContext);
+  // const {loggedInUser, setLoggedInUser} = useContext(UserContext);
 
-  function removeToken() {
-    localStorage.removeItem('token');
-    setLoggedInUser(null);  // Update state to reflect the logged-out status
-  }
+  // function removeToken() {
+  //   localStorage.removeItem('token');
+  //   setLoggedInUser(null);  // Update state to reflect the logged-out status
+  // }
   
  
 
@@ -33,12 +33,7 @@ const Appbar = () => {
            <Link to={"/"}><div className="text-4xl font-bold hover:text-green-700 font-mono">Word<span className="text-green-700">Nest</span></div></Link>  
             
 
-          {!loggedInUser ? <div className="flex flex-row items-center gap-3">
-            <Link to="/signin" className={buttonVariants({variant:"outline"})}>Sign In</Link>
-            <Link to="/signup">
-              <Button>Get Started</Button>
-            </Link>
-          </div> : <div className="flex flex-row items-center gap-3">
+          <div className="flex flex-row items-center gap-3">
               <Link to={linkPath}>
                 <p className={`${buttonVariants({ variant: "link" })} font-normal text-[19px]`}>{linkText}</p>
               </Link>
@@ -51,11 +46,11 @@ const Appbar = () => {
                 <DropdownMenuContent>
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator/>
-                  <DropdownMenuItem onClick={removeToken}>Logout</DropdownMenuItem>
+                  <DropdownMenuItem >Logout</DropdownMenuItem>
                   <DropdownMenuItem>Profile</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            </div>}
+            </div>
         </nav>
       </header>
   )
