@@ -18,8 +18,16 @@ export async function createBlog(
 
 export async function getAllBlogs(
     prisma : ExtendedPrismaClient,
+    page: number = 1,
+    perPage:number = 5
 ){
-    return await prisma.post.findMany();
+    return await prisma.post.findMany({
+        skip:(page - 1) * perPage,
+        take: perPage,
+        orderBy:{
+            createdAt: 'desc'
+        }
+    });
 }
 
 export async function getBlogById(

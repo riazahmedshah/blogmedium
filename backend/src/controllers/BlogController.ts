@@ -74,10 +74,15 @@ export const create = async (c:Context) => {
 };
 
 export const getBulk = async (c:Context) => {
+    const page = Number(c.req.query('page')) || 1
     try {
         const prisma = createPrismaClient(c.env?.DATABASE_URL);
-        const bulk = await getAllBlogs(prisma);
-        return ResponseHandler.json(c,bulk);
+        const bulk = await getAllBlogs(prisma,page);
+        return ResponseHandler.json(c,{
+            data:bulk,
+            pagination: { currentPage: page } 
+
+        });
     } catch (error) {
         return ResponseHandler.error(c,error)
     }
