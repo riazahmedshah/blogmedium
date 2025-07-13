@@ -3,7 +3,7 @@ import { verify } from "hono/jwt";
 import { JwtTokenInvalid } from "hono/utils/jwt/types";
 
 export const authMiddleware = async (c: Context, next: Next) => {
-    const token = c.req.header("Authorization");
+    const token = c.req.header("authorization");
     if (!token) {
         return c.json({ message: "Unauthorized" }, 401);
     }

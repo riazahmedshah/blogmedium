@@ -36,6 +36,9 @@ export async function getUserById(
     return await prisma.user.findFirst({
         where: {
             id
+        },
+        select:{
+            password:false
         }
     });
 }
@@ -56,10 +59,7 @@ export async function updateUser(
 
         },
         select:{
-            email:true,
-            name:true,
-            role:true,
-            profilePhoto:true
+            password:false
         }
     });
 }

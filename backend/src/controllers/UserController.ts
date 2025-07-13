@@ -4,7 +4,7 @@ import {sign} from "hono/jwt"
 
 import { SigninSchema, UserSchema } from "../schemas/userSchema";
 import { ResponseHandler } from "../utils/ResponseHandler";
-import { createUser, getUserByEmail } from "../repositories/UserRepository";
+import { createUser, getUserByEmail, getUserById } from "../repositories/UserRepository";
 import { createPrismaClient } from "../config/db";
 
 export const create = async(c: Context) => {
@@ -65,4 +65,16 @@ export const login = async (c:Context) => {
         console.error(error)
         return ResponseHandler.error(c,error)
     }
+}
+
+export const me = async(c:Context) => {
+    const userId = c.get("userId");
+    try {
+        const prisma = createPrismaClient(c.env.DATABASE_URL)
+        const user = await getUserById(prisma,userId);
+        return ResponseHandler.json(c,{user})
+    } catch (error) {
+        return ResponseHandler.error(c,error)
+    }
+
 }
