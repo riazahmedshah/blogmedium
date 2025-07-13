@@ -14,7 +14,8 @@ export type signupRequestData = z.infer<typeof registerSchema>
 export const signinSchema = z.object({
     email:z.string().email("Email is Required"),
     password:z.string().length(6,"password must be 6 charecters only"),
-})
+});
+export type signinRequestData = z.infer<typeof signinSchema>
 
 
 export const UpdateUserSchema = z.object({
