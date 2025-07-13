@@ -1,22 +1,22 @@
-import { useNavigate, useParams } from "react-router-dom"
+import {  useParams } from "react-router-dom"
 import { useBlog } from "../hooks/useBlogs"
 import { FullBlog } from "../components/FullBlog";
-import { useContext, useEffect } from "react";
-import UserContext from "../components/UserContext";
+// import { useContext, useEffect } from "react";
+// import UserContext from "../components/UserContext";
 
 export const Blog = () => {
-    const {loggedInUser} = useContext(UserContext)
-    const navigate = useNavigate();
+    // const {loggedInUser} = useContext(UserContext)
+    // const navigate = useNavigate();
     const {id} = useParams();
     const{ loading, blog }  = useBlog({
         id : id || ""
     });
 
-    useEffect(() => {
-          if (!loggedInUser) {
-              navigate("/signin"); // Redirect to login if not logged in
-          }
-      }, [loggedInUser, navigate]);
+    // useEffect(() => {
+    //       if (!loggedInUser) {
+    //           navigate("/signin"); // Redirect to login if not logged in
+    //       }
+    //   }, [loggedInUser, navigate]);
 
       
     if(loading) {

@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import Categoty from "./CtegoryComponent";
+import { Categoty } from "./CtegoryComponent";
 
 const categories = ["computer science", "global market", "What's new in tech market","full stack", "tech","personal projects","javascript"];
 

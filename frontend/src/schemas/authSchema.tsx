@@ -7,6 +7,8 @@ export const registerSchema = z.object({
     password:z.string().length(6,"password must be 6 charecters only"),
     role:z.string().optional()
 });
+
+export type signupRequestData = z.infer<typeof registerSchema>
  
 
 export const signinSchema = z.object({
