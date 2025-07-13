@@ -1,6 +1,6 @@
 const KEY = 'authToken';
 
-export const storeAuthTOken = (authToken:string) => {
+export const storeAuthToken = (authToken:string) => {
   localStorage.setItem(KEY, authToken);
 }
 

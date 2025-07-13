@@ -4,7 +4,6 @@ import { signupRequestData } from "@schemas/authSchema"
 
 export type SignupRequestResponse = {
 	user: User
-	token?: string
 }
 
 export const signupRequest = async(data:signupRequestData) => {
