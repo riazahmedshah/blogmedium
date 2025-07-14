@@ -5,13 +5,13 @@ import { ExtendedPrismaClient } from "../config/db";
 export async function createUser(
     prisma: ExtendedPrismaClient,
     createUserInput: Omit<Prisma.UserCreateInput, 'posts'>
-){
+) {
     return await prisma.user.create({
         data: {
-            name:createUserInput.name,
-            email:createUserInput.email,
-            password:createUserInput.password,
-            role:createUserInput.role,
+            name: createUserInput.name,
+            email: createUserInput.email,
+            password: createUserInput.password,
+            role: createUserInput.role,
         }
     });
 }
@@ -19,8 +19,8 @@ export async function createUser(
 
 export async function getUserByEmail(
     prisma: ExtendedPrismaClient,
-    email:string
-){
+    email: string
+) {
     return await prisma.user.findFirst({
         where: {
             email
@@ -31,14 +31,20 @@ export async function getUserByEmail(
 
 export async function getUserById(
     prisma: ExtendedPrismaClient,
-    id:number
-){
+    id: number
+) {
     return await prisma.user.findFirst({
         where: {
             id
         },
-        select:{
-            password:false
+        select: {
+            name: true,
+            id: true,
+            email: true,
+            role: true,
+            profilePhoto: true,
+            createdAt: true,
+            updatedAt: true
         }
     });
 }
@@ -47,27 +53,27 @@ export async function updateUser(
     prisma: ExtendedPrismaClient,
     updateUserInput: Prisma.UserUpdateInput,
     id: number
-){
+) {
     return await prisma.user.update({
         where: {
             id
         },
-        data:{
-            name:updateUserInput.name,
-            role:updateUserInput.role,
-            profilePhoto:updateUserInput.profilePhoto
+        data: {
+            name: updateUserInput.name,
+            role: updateUserInput.role,
+            profilePhoto: updateUserInput.profilePhoto
 
         },
-        select:{
-            password:false
+        select: {
+            password: false
         }
     });
 }
 
 export async function deleteUser(
     prisma: ExtendedPrismaClient,
-    id:number
-){
+    id: number
+) {
     return await prisma.user.delete({
         where: {
             id
