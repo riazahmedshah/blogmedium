@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import {Appbar} from "./components/Appbar";
 import Footer from "./components/Footer";
 import { useAuth } from "@modules/auth/hooks/useAuth";
+import { Toaster } from "@ui/sonner";
 
 export const Layout = () => {
   return (
@@ -11,6 +12,7 @@ export const Layout = () => {
         <Outlet />
       </div>
       <Footer />
+      <Toaster position="bottom-right" richColors closeButton />
     </div>
   );
 };

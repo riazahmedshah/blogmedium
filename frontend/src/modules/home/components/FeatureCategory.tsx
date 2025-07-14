@@ -1,31 +1,39 @@
 import { useLocation } from "react-router-dom";
-import { Categoty } from "./CtegoryComponent";
+import { Category } from "./CtegoryComponent";
 
-const categories = ["computer science", "global market", "What's new in tech market","full stack", "tech","personal projects","javascript"];
+const categories = [
+  "Computer Science", 
+  "Global Market", 
+  "Tech Trends",
+  "Full Stack", 
+  "Programming",
+  "Personal Projects",
+  "JavaScript"
+];
 
 export const FeatureCategory = () => {
-    const {pathname} = useLocation();
+    const { pathname } = useLocation();
     const category = pathname.split("/").filter(Boolean);
     const tag = category[category.length - 1];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const posts:any = []
-    return(
-        <div className="w-full py-10 bg-[#1b1b32]">
-            <div className="text-center my-2 ">
-                <h1 className=" font-semibold text-4xl text-[#FFFFFF]">
-                    <span>#</span>
+    const posts: any = [];
+    
+    return (
+        <div className="w-full py-12 bg-gradient-to-r from-blue-900 to-indigo-900">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 className="font-bold text-4xl md:text-5xl text-white mb-2">
+                    <span className="text-blue-300">#</span>
                     {tag ? tag.toUpperCase() : "BLOGS"}
                 </h1>
-                {tag ? <p className="text-3xl py-2 font-extralight text-[#FFFFFF]/50">
-                    {`A collection of ${posts.length > 0 ? posts.length : 21} posts`}
-                </p> : <p className="text-3xl py-2 font-extralight text-[#FFFFFF]/50">
-                   An endless collection of learning
+                <p className="text-xl md:text-2xl text-blue-100/80 font-light">
+                    {tag 
+                        ? `A curated collection of ${posts.length > 0 ? posts.length : 21} posts` 
+                        : "Discover an endless collection of knowledge and insights"}
                 </p>
-                }
             </div>
             
-            <Categoty categoryArray={categories}/>
+            <div className="mt-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Category categoryArray={categories}/>
+            </div>
         </div>
     )
 }
-

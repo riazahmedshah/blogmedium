@@ -1,26 +1,63 @@
-import { useForm } from "react-hook-form"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { useMutation } from "@tanstack/react-query"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { signinRequestData, signinSchema } from "@schemas/authSchema"
+
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@ui/form"
 import { CardWrapper } from "./card-wrapper"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { signinSchema } from "@schemas/authSchema"
 import { Input } from "@ui/input"
 import { Button } from "@ui/button"
+import { loginRequest } from "../api/login"
+import { useAuth } from "../hooks/useAuth"
+import { isAxiosError } from "axios"
+import { toast } from "sonner"
 
 export const LoginForm = () => {
-
+  const auth = useAuth()
   const form = useForm({
-    resolver:zodResolver(signinSchema),
-    defaultValues:{
-      email:"test1@gmail.com",
-      password:"123456"
+    resolver: zodResolver(signinSchema),
+    defaultValues: {
+      email: "test1@gmail.com",
+      password: "123456"
     }
   });
 
-  const onSubmit = () => {
+  const { mutate, isPending } = useMutation({
+    mutationFn: (data: signinRequestData) => loginRequest(data),
+    onSuccess: (response) => {
+      auth.onLogin(response);
+      toast.success("Success!", {
+        description: "Successful Login"
+      })
+    },
+    onError: (error) => {
+      if (isAxiosError(error) && error.response) {
+
+        if (error.response.data && error.response.data.errors) {
+          const errors = error.response.data.errors
+          toast.error("Failed",{
+            description:errors
+          })
+          
+          for (const [field, message] of Object.entries(errors)) {
+            const messageString = String(message)
+            form.setError(field as keyof signinRequestData, {
+              type: 'custom',
+              message: messageString
+            })
+          }
+        }
+      }
+    }
+  })
+
+  const onSubmit: SubmitHandler<signinRequestData> = (data) => {
     console.log("Sign in")
+    mutate(data)
   }
 
-  return(
+  return (
     <CardWrapper
       label="Login to your account"
       title="Login"
@@ -33,7 +70,7 @@ export const LoginForm = () => {
             <FormField
               control={form.control}
               name="email"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
@@ -43,7 +80,7 @@ export const LoginForm = () => {
                       placeholder="elonmust@gmail.com"
                     />
                   </FormControl>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -51,7 +88,7 @@ export const LoginForm = () => {
             <FormField
               control={form.control}
               name="password"
-              render={({field}) => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
@@ -61,12 +98,12 @@ export const LoginForm = () => {
                       placeholder="abcdef"
                     />
                   </FormControl>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" disabled={isPending}>
             Login
           </Button>
         </form>

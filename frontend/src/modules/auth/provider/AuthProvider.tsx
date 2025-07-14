@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     queryClient.setQueryData(currentUserQuery().queryKey, null);
   }
 
+
   const contextValue = {
     user,
     onLogin: handleLogin,

@@ -1,6 +1,7 @@
+import axios from "@/config/axios"
 import { User } from "@modules/user/types"
 import { signinRequestData } from "@schemas/authSchema"
-import axios from "axios"
+
 
 export type LoginRequestResponse = {
   user:User,
@@ -8,6 +9,6 @@ export type LoginRequestResponse = {
 }
 
 export const loginRequest = async (data: signinRequestData) => {
-  const response = await axios.post<LoginRequestResponse>('/user/login', data);
+  const response = await axios.post<LoginRequestResponse>('/user/signin', data);
   return response.data
 }
