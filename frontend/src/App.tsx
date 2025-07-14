@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import './App.css';
 import Blogs from './pages/Blogs';
 import { Blog } from './pages/singleBlog';
@@ -13,6 +14,7 @@ import { Layout, ProtectedRoute } from './routes';
 
 function App() {
   return (
+    <QueryClientProvider client={new QueryClient()}>
     <AuthProvider>
       <BrowserRouter basename="/">
         <Routes>
@@ -31,6 +33,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
+    </QueryClientProvider>
   );
 }
 

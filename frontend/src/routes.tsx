@@ -18,9 +18,14 @@ export const Layout = () => {
 export const ProtectedRoute = () => {
   const {user} = useAuth();
 
-  if(!user){
-    return <Navigate to="/auth/login" replace/>
+  if (user === null) {
+    return <Navigate to="/auth/login" replace />;
   }
+
+  if (user === undefined) {
+    return <div>Checking authentication...</div>;
+  }
+
 
   return <Outlet/>;
 }
