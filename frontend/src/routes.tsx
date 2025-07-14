@@ -1,5 +1,5 @@
-import { Navigate, Outlet } from "react-router-dom";
-import Appbar from "./components/Appbar";
+import { Outlet, useNavigate } from "react-router-dom";
+import {Appbar} from "./components/Appbar";
 import Footer from "./components/Footer";
 import { useAuth } from "@modules/auth/hooks/useAuth";
 
@@ -16,10 +16,11 @@ export const Layout = () => {
 };
 
 export const ProtectedRoute = () => {
+  const navigate = useNavigate()
   const {user} = useAuth();
 
   if (user === null) {
-    return <Navigate to="/auth/login" replace />;
+    navigate("/auth/login");
   }
 
   if (user === undefined) {
