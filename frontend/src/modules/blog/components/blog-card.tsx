@@ -33,7 +33,6 @@ export const BlogCard = ({
       aria-labelledby={`blog-title-${id}`}
     >
       <div className="flex flex-col sm:flex-row">
-        {/* Image Container */}
         <div className="relative h-48 sm:h-auto sm:w-1/3 min-w-[200px] overflow-hidden bg-gray-100">
           {image && !imageError ? (
             <img
@@ -50,9 +49,7 @@ export const BlogCard = ({
           )}
         </div>
         
-        {/* Content Container */}
         <div className="flex-1 p-4 sm:p-6">
-          {/* Category Badge */}
           <div className="mb-2">
             <span 
               className="inline-block px-3 py-1 text-xs font-semibold tracking-wider text-blue-600 uppercase rounded-full bg-blue-50"
@@ -62,7 +59,6 @@ export const BlogCard = ({
             </span>
           </div>
           
-          {/* Title */}
           <h3 
             id={`blog-title-${id}`}
             className="mb-2 text-xl font-bold text-gray-900 line-clamp-2"
@@ -70,7 +66,6 @@ export const BlogCard = ({
             {title}
           </h3>
           
-          {/* Author and Date */}
           <div className="flex items-center mt-4">
             <div className="flex-shrink-0 mr-3">
               {authorImage && !authorImageError ? (
@@ -110,7 +105,6 @@ export const BlogCard = ({
             </div>
           </div>
           
-          {/* Read More Button */}
           <div className="mt-4 pt-4 border-t border-gray-100">
             <button 
               className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm"
