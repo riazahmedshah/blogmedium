@@ -94,7 +94,7 @@ export const Appbar = () => {
                                         </Link>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem className="hover:bg-blue-800 focus:bg-blue-800">
-                                        <Link to="/settings" className="w-full">
+                                        <Link to="/profile/settings" className="w-full">
                                             Settings
                                         </Link>
                                     </DropdownMenuItem>

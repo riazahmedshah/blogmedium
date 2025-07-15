@@ -11,6 +11,7 @@ import LoginPage from '@modules/auth/pages/loginPage';
 import { AuthProvider } from '@modules/auth/provider/AuthProvider';
 import { Layout, ProtectedRoute } from './routes';
 import { Toaster } from '@ui/sonner';
+import ProfileSettingPage from '@modules/user/pages/ProfileSettingPage';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/blog/:id' element={<Blog />} />
             <Route element={<ProtectedRoute />}>
+              <Route path='/profile/settings' element={<ProfileSettingPage/>}/>
               <Route path='/publish' element={<Publish />} />
             </Route>
             <Route path='*' element={<Error />} />
