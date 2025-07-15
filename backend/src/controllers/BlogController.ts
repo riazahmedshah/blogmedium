@@ -7,6 +7,7 @@ import { getR2Client } from "../config/r2Client";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 
 export const create = async (c:Context) => {
+    const userId = c.get("userId");
     const formData = await c.req.parseBody();
 
     const postImage = formData['postImage'];
@@ -63,7 +64,7 @@ export const create = async (c:Context) => {
             image:publicUrl,
             title: data.title,
             content: data.content,
-            authorId:data.authorId,
+            authorId:userId,
             categoryId:data.categoryId
         });
         return ResponseHandler.created(c,{
