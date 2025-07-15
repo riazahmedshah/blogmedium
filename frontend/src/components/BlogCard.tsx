@@ -76,7 +76,7 @@ export function Avatar({ name, size }: { name: string; size: number }) {
         <span className="font-normal text-sm text-white dark:text-gray-300">{name[0]}</span>
       </div>
     );
-  }
+}
   
 
 export default BlogCard

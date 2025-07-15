@@ -12,6 +12,7 @@ import { AuthProvider } from '@modules/auth/provider/AuthProvider';
 import { Layout, ProtectedRoute } from './routes';
 import { Toaster } from '@ui/sonner';
 import ProfileSettingPage from '@modules/user/pages/ProfileSettingPage';
+import BlogsPage from '@modules/blog/pages/BlogsPage';
 
 
 function App() {
@@ -22,10 +23,11 @@ function App() {
         <Routes>
           <Route path='/auth/register' element={<SignupPage type='Signup' />} />
           <Route path='/auth/login' element={<LoginPage type='Signin' />} />
-          <Route path='/' element={<LandingPage />} />
           
           <Route element={<Layout />}>
+            <Route path='/' element={<LandingPage />} />
             <Route path='/blogs' element={<Blogs />} />
+            <Route path='/dev' element={<BlogsPage/>}/>
             <Route path='/blog/:id' element={<Blog />} />
             <Route element={<ProtectedRoute />}>
               <Route path='/profile/settings' element={<ProfileSettingPage/>}/>

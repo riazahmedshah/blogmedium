@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { Category } from "./CtegoryComponent";
+import { Category } from "./CtegoryComponent"
 
 const categories = [
   "Computer Science", 

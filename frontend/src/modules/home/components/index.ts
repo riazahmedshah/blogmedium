@@ -1,6 +1,5 @@
 export { CarasoulCard } from "./CarasoulCard"
-export { Category } from "./CtegoryComponent"
+export { Category } from "../../../components/CtegoryComponent"
 export { FeatureArticle } from "./FeatureArticle"
-export { FeatureCategory } from "./FeatureCategory"
 export { Header } from "./Header"
 export { StarRating } from "./StarRating"
