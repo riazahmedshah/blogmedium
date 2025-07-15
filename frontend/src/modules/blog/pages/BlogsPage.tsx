@@ -10,7 +10,8 @@ import { ErrorComponent } from "../components/error-component";
 const BlogsPage = () => {
   const { data, isLoading, isError } = useQuery({
     queryFn: () => getBlogRequest(),
-    queryKey: ["blogs"]
+    queryKey: ["blogs"],
+    staleTime: 1000 * 60 * 5,
   });
 
   if (isLoading) {

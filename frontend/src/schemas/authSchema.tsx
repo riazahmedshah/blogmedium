@@ -24,7 +24,7 @@ export const userProfilePhotoSchema = z.instanceof(File).refine((file) => {
     ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(file.type)
 }, "PICTURE_MUST_BE_JPG_JPEG_PNG, WEBP, PNG").refine((file) => {
     file.size <= 5 * MB_TO_BYTES
-},"LIMIT_FILE_SIZE (Max 50MB)").optional()
+},"LIMIT_FILE_SIZE (Max 5MB)").optional()
 
 export const UpdateUserSchema = z.object({
     name:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters").optional(),

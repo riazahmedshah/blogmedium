@@ -15,3 +15,10 @@ export type Blog = {
 }
 
 export type BlogList = Blog[]
+
+export type Category = {
+  id:number
+  name:string
+}
+
+export type CategoryList = Category[]

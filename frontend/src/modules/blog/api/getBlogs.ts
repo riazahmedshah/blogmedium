@@ -21,4 +21,4 @@ export const getBlogRequest = async() => {
     }
     throw error
   }
-}
+};

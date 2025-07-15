@@ -57,7 +57,6 @@ export const UserProfileUpload = ({
             onChange={handleImageChange}
             accept="image/*"
             className="hidden"
-            id="avatar-upload"
           />
           <div className="flex gap-3">
             <Button
