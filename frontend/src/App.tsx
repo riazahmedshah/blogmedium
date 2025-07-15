@@ -10,6 +10,7 @@ import SignupPage from '@modules/auth/pages/SignupPage';
 import LoginPage from '@modules/auth/pages/loginPage';
 import { AuthProvider } from '@modules/auth/provider/AuthProvider';
 import { Layout, ProtectedRoute } from './routes';
+import { Toaster } from '@ui/sonner';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AuthProvider>
+    <Toaster position="bottom-right"  richColors closeButton />
     </QueryClientProvider>
   );
 }

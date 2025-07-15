@@ -1,5 +1,5 @@
 export { CarasoulCard } from "./CarasoulCard"
-export { Categoty } from "./CtegoryComponent"
+export { Category } from "./CtegoryComponent"
 export { FeatureArticle } from "./FeatureArticle"
 export { FeatureCategory } from "./FeatureCategory"
 export { Header } from "./Header"

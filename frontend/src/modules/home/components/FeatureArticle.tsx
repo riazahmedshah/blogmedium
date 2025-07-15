@@ -51,7 +51,7 @@
 //     )
 // }
 import { ArrowRight, Calendar, Clock, User2 } from "lucide-react";
-import { Button } from "../../../components/ui/button";
+import { Button } from "@ui/button";
 
 export const FeatureArticle = () => {
     return (

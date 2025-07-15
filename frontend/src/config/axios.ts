@@ -10,7 +10,7 @@ const axios = axiosDefault.create({
 axios.interceptors.request.use(
   (config) => {
     const publicEndpoints = [
-      'user/create',
+      '/user/create',
       '/blog/bulk'
     ];
     if(!publicEndpoints.some(endpoint =>config.url && config.url.includes(endpoint))) {

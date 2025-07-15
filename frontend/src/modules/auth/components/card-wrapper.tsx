@@ -12,7 +12,7 @@ interface cardWrapperProps{
 
 export const CardWrapper = ({title,label,backButtonHref,backButtonLabel, children}:cardWrapperProps) => {
     return(
-        <Card className="xl:max-w-sm md:w-1/2 shadow-md">
+        <Card className=" shadow-md">
             <CardHeader>
                 <AuthHeader label={label} title={title}/>
             </CardHeader>
