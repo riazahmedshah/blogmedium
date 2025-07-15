@@ -70,3 +70,9 @@ export async function deleteBlog(
         }
     });
 }
+
+export async function getCategory(
+    prisma:ExtendedPrismaClient
+) {
+  return await prisma.category.findMany();
+}
