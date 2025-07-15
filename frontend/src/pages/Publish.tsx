@@ -1,9 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
-import { BACKEND_URL } from "../config";
-import { useNavigate } from "react-router-dom";
 // import UserContext from "../components/UserContext";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
 import JoditEditor from "jodit-react"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,10 +10,10 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 
 export const Publish = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  // const [title] = useState("");
+  const [description] = useState("");
+  // const [ setError] = useState<string | null>(null);
+  // const navigate = useNavigate();
   // const{loggedInUser} = useContext(UserContext)
 
   // console.log("TITLE", title);
@@ -27,31 +24,29 @@ export const Publish = () => {
   })
 
   const onSubmit = async () => {
-    if (!title || !description) {
-      setError("Both title and content are required.");
-      return;
-    }
+    // onSubmit...
+  }
 
 
-    try {
-      const response = await axios.post(
-        `${BACKEND_URL}/api/v1/blog`,
-        {
-          title,
-          content: DOMPurify.sanitize(description),
-        },
-        {
-          headers: {
-            Authorization: localStorage.getItem("token") || "",
-          }
-        }
-      );
-      navigate(`/blog/${response.data.id}`);
-    } catch (err) {
-        console.error(err)
-      setError("Failed to publish. Please try again later.");
-    }
-  };
+  //   try {
+  //     const response = await axios.post(
+  //       `${BACKEND_URL}/api/v1/blog`,
+  //       {
+  //         title,
+  //         content: DOMPurify.sanitize(description),
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: localStorage.getItem("token") || "",
+  //         }
+  //       }
+  //     );
+  //     navigate(`/blog/${response.data.id}`);
+  //   } catch (err) {
+  //       console.error(err)
+  //     setError("Failed to publish. Please try again later.");
+  //   }
+  // };
 
   // useEffect(() => {
   //     if (!loggedInUser) {
@@ -105,7 +100,7 @@ export const Publish = () => {
                   render={({field}) => (
                     <FormItem>
                       <FormControl>
-                        <TextEditor onChange={function (): void {
+                        <TextEditor {...field} onChange={function (): void {
                           throw new Error("Function not implemented.");
                         } }/>
                       </FormControl>

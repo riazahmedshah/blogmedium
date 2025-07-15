@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import './App.css';
 import { Blog } from './pages/singleBlog';
 import { Publish } from './pages/Publish';
-import {NotFound} from './pages/NotFound'
+import {NotFound} from './components/NotFound'
 import LandingPage from '@modules/home/pages/landingPage';
 import SignupPage from '@modules/auth/pages/SignupPage';
 import LoginPage from '@modules/auth/pages/loginPage';

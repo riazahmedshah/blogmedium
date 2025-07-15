@@ -1,5 +1,5 @@
 
-import { Avatar } from "./BlogCard"
+// import { Avatar } from "./BlogCard"
 import { Blog } from "../hooks/useBlogs"
 
 export const FullBlog = ({blog} : {blog : Blog}) => {
@@ -24,7 +24,7 @@ export const FullBlog = ({blog} : {blog : Blog}) => {
                     </div>
                     <div className="flex w-full">
                         <div className="pr-4 flex flex-col justify-center">
-                            <Avatar size={20} name={blog.author?.name || "Anonymous"} />
+                            {/* <Avatar size={20} name={blog.author?.name || "Anonymous"} /> */}
                         </div>
                         <div>
                             <div className="text-xl font-bold">

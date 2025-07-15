@@ -6,7 +6,6 @@ export const NotFound = () => {
   return (
     <div className="max-w-5xl px-4 mx-auto flex flex-col items-center justify-center min-h-[60vh] py-8">
       <div className="space-y-6 text-center max-w-md">
-        {/* Animated 404 indicator */}
         <div className="relative">
           <span className="text-9xl font-bold text-primary/10">404</span>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -16,7 +15,6 @@ export const NotFound = () => {
           </div>
         </div>
 
-        {/* Main message */}
         <h1 className="text-2xl font-semibold tracking-tight">
           Oops! Lost in the digital void
         </h1>
@@ -25,7 +23,6 @@ export const NotFound = () => {
           The page you're looking for doesn't exist or may have been moved.
         </p>
 
-        {/* Action buttons */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
           <Button asChild variant="outline" className="gap-1">
             <Link to="/">
@@ -40,7 +37,6 @@ export const NotFound = () => {
           </Button>
         </div>
 
-        {/* Additional help */}
         <div className="pt-8">
           <p className="text-sm text-muted-foreground">
             Still stuck?{" "}
