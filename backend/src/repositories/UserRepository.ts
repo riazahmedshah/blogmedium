@@ -65,7 +65,13 @@ export async function updateUser(
 
         },
         select: {
-            password: false
+            name: true,
+            id: true,
+            email: true,
+            role: true,
+            profilePhoto: true,
+            createdAt: true,
+            updatedAt: true
         }
     });
 }
