@@ -10,5 +10,5 @@ blogRoute.get("/bulk", getBulk);
 blogRoute.get("/categories", getCategories);
 blogRoute.post("/create", authMiddleware, create);
 blogRoute.put("/update/:id", authMiddleware, update);
-blogRoute.get("/:id", authMiddleware, get);
+blogRoute.get("/:id", get);
 blogRoute.delete("/delete/:id",authMiddleware, Delete);
