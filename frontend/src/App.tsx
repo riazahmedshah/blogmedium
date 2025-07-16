@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import './App.css';
 import { Blog } from './pages/singleBlog';
-// import { Publish } from './pages/Publish';
 import {NotFound} from './components/NotFound'
 import LandingPage from '@modules/home/pages/landingPage';
 import SignupPage from '@modules/auth/pages/SignupPage';
@@ -28,10 +27,10 @@ function App() {
             <Route path='/' element={<LandingPage />} />
             <Route path='/blogs' element={<BlogsPage />} />
             <Route path='/blog/:id' element={<Blog />} />
-            <Route path='/publish' element={<PublishPage/>}/>
+            
             <Route element={<ProtectedRoute />}>
               <Route path='/profile/settings' element={<ProfileSettingPage/>}/>
-              {/* <Route path='/publish' element={<Publish />} /> */}
+                <Route path='/publish' element={<PublishPage/>}/>
             </Route>
             <Route path='*' element={<NotFound />} />
           </Route>

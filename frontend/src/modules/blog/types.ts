@@ -10,7 +10,7 @@ export type Blog = {
     profilePhoto: string | null
   }
   category: {
-    name: string
+    name:string
   }
 }
 

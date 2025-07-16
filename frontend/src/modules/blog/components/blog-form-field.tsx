@@ -21,7 +21,10 @@ export const BlogFormFields = ({ form, isLoading: formLoading }: BlogFormFieldsP
     queryKey: ['categories'],
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
-
+  console.log("Categories data:", data);
+  console.log("Is Loading:", isLoading);
+  console.log("Is Error:", isError);
+  console.log("Error object:", error);
   return (
     <div className="space-y-6">
       <FormField
@@ -83,15 +86,15 @@ export const BlogFormFields = ({ form, isLoading: formLoading }: BlogFormFieldsP
                 <Input 
                   placeholder="Type category name manually" 
                   disabled={formLoading}
-                  onChange={(e) => field.onChange({ name: e.target.value })}
+                  onChange={(e) => field.onChange(Number(e.target.value))} // Convert to number
                 />
               </div>
             ) : (
               <>
                 <Select 
-                  onValueChange={field.onChange} 
+                  value={field.value ? String(field.value) : ""} 
+                  onValueChange={(value) => field.onChange(Number(value))}
                   disabled={formLoading}
-                  value={field.value.toString()}
                 >
                   <FormControl>
                     <SelectTrigger className={formLoading ? "opacity-50" : ""}>
@@ -99,10 +102,10 @@ export const BlogFormFields = ({ form, isLoading: formLoading }: BlogFormFieldsP
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {data?.category?.map((category) => (
+                    {data?.map((category) => (
                       <SelectItem 
                         key={category.id} 
-                        value={category.id.toString()}
+                        value={String(category.id)}
                       >
                         {category.name}
                       </SelectItem>

@@ -13,7 +13,7 @@ const BlogsPage = () => {
     queryKey: ["blogs"],
     staleTime: 1000 * 60 * 5,
   });
-
+  console.log("DATA",data)
   if (isLoading) {
     return (
       <div className="space-y-6">
@@ -30,7 +30,7 @@ const BlogsPage = () => {
     );
   }
 
-  if (!data?.blog || data.blog.length === 0) {
+  if (!data?.data || data.data.length === 0) {
     return (
       <NoBlogAvailable/>
     );
@@ -38,7 +38,7 @@ const BlogsPage = () => {
 
   return (
     <div className="space-y-6">
-      {data.blog.map((blog) => (
+      {data.data.map((blog) => (
         <BlogCard 
           key={blog.id}
           category={blog.category.name}

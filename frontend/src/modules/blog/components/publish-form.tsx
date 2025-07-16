@@ -28,9 +28,10 @@ export const PublishForm = () => {
   const {mutate:createBlog, isPending} = useMutation({
     mutationFn: (data:createPostRequest) => createBlogRequest(data),
     onSuccess: (newBlog) => {
-    queryClient.setQueryData(["blogs"], (old: BlogList | undefined) => 
-      old ? [...old, newBlog] : [newBlog]
-    );
+      console.log("New Blog", newBlog)
+      queryClient.setQueryData(["blogs"], (old: BlogList | undefined) => 
+        old ? [...old, newBlog] : [newBlog]
+      );
     
     queryClient.invalidateQueries({ queryKey: ["blogs"] });
     setSelectedImage(null);
@@ -44,11 +45,13 @@ export const PublishForm = () => {
   });
 
   const onSubmit = (data:createPostRequest) => {
+    console.log("Data", data);
     const formData = {
       ...data,
       postImage: selectedImage || undefined
     }
     createBlog(formData);
+    // console.log(formData);
   }
 
   return(

@@ -3,7 +3,7 @@ import { BlogList } from "../types";
 import { isAxiosError } from "axios";
 
 type blogRequestResponse = {
-  blog:BlogList
+  data:BlogList
   total?: number
   page?: number
   perPage?: number

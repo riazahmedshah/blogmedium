@@ -1,11 +1,11 @@
 import { Bird, User2 } from "lucide-react";
 import { Button } from "@ui/button";
-import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "@modules/auth/hooks/useAuth";
+import { Link, useLocation } from "react-router-dom"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@ui/dropdown-menu";
+import { useCurrentUser } from "@modules/auth/hooks/useCurrentUser";
 
 export const Appbar = () => {
-    const { user } = useAuth();
+    const user= useCurrentUser();
     const location = useLocation();
 
     return (
