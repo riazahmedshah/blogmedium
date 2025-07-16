@@ -1,24 +1,30 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import {Appbar} from "./components/Appbar";
 import Footer from "./components/Footer";
 import { useAuth } from "@modules/auth/hooks/useAuth";
 import { FeatureCategory } from "./components/FeatureCategory";
 
 export const Layout = () => {
+  const location = useLocation();
+  const pathsToHideFeatureCategory = [
+    '/publish',
+    '/blog/:id',
+  ];
+
+  const shouldHideFeatureCategory = pathsToHideFeatureCategory.some(path =>
+    location.pathname.startsWith(path)
+  );
   return (
     <div className="min-h-screen flex flex-col font-sans bg-gray-50">
       {/* Header Section */}
       <header className="shadow-sm">
         <Appbar />
-        <FeatureCategory />
+        {!shouldHideFeatureCategory && <FeatureCategory />}
       </header>
 
-      {/* Main Content - flex-grow ensures it takes remaining space */}
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Outlet /> {/* This will render the child routes */}
+        <Outlet />
       </main>
-
-      {/* Footer - always at bottom */}
       <Footer />
     </div>
   );

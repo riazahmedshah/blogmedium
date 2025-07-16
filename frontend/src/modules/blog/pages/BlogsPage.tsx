@@ -40,7 +40,7 @@ const BlogsPage = () => {
   return (
     <div className="space-y-6">
       {data.data.map((blog) => (
-        <Link to={`/blogs/${blog.id}`} state={{blogData: blog}}>
+        <Link to={`/blog/${blog.id}`} state={{blogData: blog}}>
           <BlogCard 
             key={blog.id}
             category={blog.category.name}
