@@ -5,9 +5,12 @@ export type Blog = {
   content: string
   image: string | null
   createdAt: Date | string
+  authorId: number;
+  categoryId: number;
   author: {
     name: string
     profilePhoto: string | null
+    role:string
   }
   category: {
     name:string

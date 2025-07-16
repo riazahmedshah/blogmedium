@@ -1,5 +1,5 @@
 import axios from "@/config/axios"
-import { BlogList } from "../types";
+import { BlogList, Blog } from "../types";
 import { isAxiosError } from "axios";
 
 type blogRequestResponse = {
@@ -7,6 +7,9 @@ type blogRequestResponse = {
   total?: number
   page?: number
   perPage?: number
+}
+type fullBlogRequestResponse = {
+  data:Blog
 }
 
 export const getBlogRequest = async() => {
@@ -22,3 +25,17 @@ export const getBlogRequest = async() => {
     throw error
   }
 };
+
+export const getSingleBlogRequest = async (blogId:string) => {
+  try {
+    const response = await axios.get<fullBlogRequestResponse>(`/blog/${blogId}`)
+    return response.data
+  } catch (error) {
+    if(isAxiosError(error)){
+      if(error.response?.status === 401){
+        return null
+      }
+    }
+    throw error
+  }
+}
