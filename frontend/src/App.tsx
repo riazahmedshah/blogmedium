@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider} from "@tanstack/react-query"
 import './App.css';
-import { Blog } from './pages/singleBlog';
 import {NotFound} from './components/NotFound'
 import LandingPage from '@modules/home/pages/landingPage';
 import SignupPage from '@modules/auth/pages/SignupPage';
@@ -12,6 +11,7 @@ import { Toaster } from '@ui/sonner';
 import ProfileSettingPage from '@modules/user/pages/ProfileSettingPage';
 import BlogsPage from '@modules/blog/pages/BlogsPage';
 import PublishPage from '@modules/blog/pages/PublishPage';
+import SingleBlogPage from '@modules/blog/pages/SignleBlogPage'
 
 
 function App() {
@@ -26,8 +26,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path='/' element={<LandingPage />} />
             <Route path='/blogs' element={<BlogsPage />} />
-            <Route path='/blog/:id' element={<Blog />} />
-            
+            <Route path='/blog/:id' element={<SingleBlogPage/>} />
             <Route element={<ProtectedRoute />}>
               <Route path='/profile/settings' element={<ProfileSettingPage/>}/>
                 <Route path='/publish' element={<PublishPage/>}/>

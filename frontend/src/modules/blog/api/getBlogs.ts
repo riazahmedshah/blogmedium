@@ -1,5 +1,5 @@
 import axios from "@/config/axios"
-import { BlogList, Blog } from "../types";
+import { BlogList, SingleBlog } from "../types";
 import { isAxiosError } from "axios";
 
 type blogRequestResponse = {
@@ -9,7 +9,8 @@ type blogRequestResponse = {
   perPage?: number
 }
 type fullBlogRequestResponse = {
-  data:Blog
+  blog: SingleBlog | null;
+  recommendedBlogs: SingleBlog[];
 }
 
 export const getBlogRequest = async() => {
@@ -31,11 +32,13 @@ export const getSingleBlogRequest = async (blogId:string) => {
     const response = await axios.get<fullBlogRequestResponse>(`/blog/${blogId}`)
     return response.data
   } catch (error) {
-    if(isAxiosError(error)){
-      if(error.response?.status === 401){
-        return null
+    if (isAxiosError(error)) {
+      if (error.response?.status === 401 || error.response?.status === 404) {
+        console.error(`Error fetching blog ${blogId}: Status ${error.response.status}`);
+        return null;
       }
     }
-    throw error
+    console.error("An unexpected error occurred while fetching the blog:", error);
+    throw error;
   }
 }

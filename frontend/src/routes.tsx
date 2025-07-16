@@ -8,7 +8,7 @@ export const Layout = () => {
   const location = useLocation();
   const pathsToHideFeatureCategory = [
     '/publish',
-    '/blog/:id',
+    '/blog',
   ];
 
   const shouldHideFeatureCategory = pathsToHideFeatureCategory.some(path =>

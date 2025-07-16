@@ -3,7 +3,7 @@ export type Blog = {
   id:string
   title: string
   content: string
-  image: string | null
+  image: string
   createdAt: Date | string
   authorId: number;
   categoryId: number;
@@ -25,3 +25,25 @@ export type Category = {
 }
 
 export type CategoryList = Category[]
+
+export type Author = {
+  id: number;
+  email: string;
+  name: string;
+  profilePhoto: string | null;
+  role: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SingleBlog = {
+  id: string;
+  image: string;
+  title: string;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  authorId: number;
+  categoryId: number;
+  author: Author;
+};

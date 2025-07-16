@@ -1,6 +1,6 @@
 import { FullBlog } from "../components/full-blog-component"
 
-const singleBlogPage = () => {
+const SingleBlogPage = () => {
   return(
     <div>
       <FullBlog/>
@@ -8,4 +8,4 @@ const singleBlogPage = () => {
   )
 }
 
-export default singleBlogPage
+export default SingleBlogPage
