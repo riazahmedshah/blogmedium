@@ -34,18 +34,65 @@ export async function getAllBlogs(
     });
 }
 
+interface Author {
+    id: number;
+    email: string;
+    name: string;
+    profilePhoto: string | null;
+    role: string;
+    createdAt: string; 
+    updatedAt: string;
+}
+
+interface Post {
+  id: string;
+  image: string;
+  title: string;
+  content: string;
+  createdAt: string; 
+  updatedAt: string;
+  authorId: number;
+  categoryId: number;
+  author: Author;
+}
+
 export async function getBlogById(
     prisma : ExtendedPrismaClient,
     id:string
 ){
-    return await prisma.post.findUnique({
-        where:{
-            id
+    const mainBlog = await prisma.post.findUnique({
+        where: {
+            id: id,
         },
-        include:{
-            author:true
-        }
+        include: {
+            author: true,
+        },
     });
+
+    if (!mainBlog) {
+        return {
+            blog: null,
+            recommendedBlogs: [],
+        };
+    }
+    const recommendedBlogs = await prisma.post.findMany({
+        where: {
+            id: {
+                not: id,
+            },
+        },
+        include: {
+            author: true,
+        },
+        orderBy: {
+            createdAt: 'desc',
+        },
+        take: 3,
+    });
+    return {
+        blog: mainBlog as unknown as Post,
+        recommendedBlogs: recommendedBlogs as unknown as Post[],
+    };
 }
 
 export async function updateBlog(
