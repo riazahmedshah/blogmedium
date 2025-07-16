@@ -26,6 +26,10 @@ export async function getAllBlogs(
         take: perPage,
         orderBy:{
             createdAt: 'desc'
+        },
+        include:{
+            author:true,
+            category:true
         }
     });
 }
@@ -74,5 +78,10 @@ export async function deleteBlog(
 export async function getCategory(
     prisma:ExtendedPrismaClient
 ) {
-  return await prisma.category.findMany();
+  try {
+    return await prisma.category.findMany();
+  } catch (error) {
+    console.error(error);
+    throw error
+  }
 }
