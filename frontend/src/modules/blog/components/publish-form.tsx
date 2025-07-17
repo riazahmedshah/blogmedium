@@ -28,7 +28,6 @@ export const PublishForm = () => {
   const {mutate:createBlog, isPending} = useMutation({
     mutationFn: (data:createPostRequest) => createBlogRequest(data),
     onSuccess: (newBlog) => {
-      console.log("New Blog", newBlog)
       queryClient.setQueryData(["blogs"], (old: BlogList | undefined) => 
         old ? [...old, newBlog] : [newBlog]
       );
@@ -36,11 +35,11 @@ export const PublishForm = () => {
     queryClient.invalidateQueries({ queryKey: ["blogs"] });
     setSelectedImage(null);
     form.reset();
-  },
-  onError: (error) => {
-    toast.error("Failed to create blog");
-    console.error("Create blog error:", error);
-  }
+    },
+    onError: (error) => {
+      toast.error("Failed to create blog");
+      console.error("Create blog error:", error);
+    }
 
   });
 
@@ -51,7 +50,6 @@ export const PublishForm = () => {
       postImage: selectedImage || undefined
     }
     createBlog(formData);
-    // console.log(formData);
   }
 
   return(

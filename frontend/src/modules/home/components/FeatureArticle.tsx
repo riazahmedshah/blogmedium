@@ -52,6 +52,7 @@
 // }
 import { ArrowRight, Calendar, Clock, User2 } from "lucide-react";
 import { Button } from "@ui/button";
+import { Link } from "react-router-dom";
 
 export const FeatureArticle = () => {
     return (
@@ -94,10 +95,12 @@ export const FeatureArticle = () => {
                     </p>
                     
                     <div>
+                        <Link to="/blogs">
                         <Button className="group px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-lg transition-all duration-300">
                             <span className="mr-2">Read Full Article</span>
                             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18}/>
                         </Button>
+                        </Link>
                     </div>
                 </div>
 

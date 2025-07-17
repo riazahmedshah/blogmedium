@@ -3,8 +3,10 @@ import { Button } from "@ui/button";
 import { Link, useLocation } from "react-router-dom"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@ui/dropdown-menu";
 import { useCurrentUser } from "@modules/auth/hooks/useCurrentUser";
+import { useAuth } from "@modules/auth/hooks/useAuth";
 
 export const Appbar = () => {
+    const {onLogout} = useAuth()
     const user= useCurrentUser();
     const location = useLocation();
 
@@ -99,7 +101,7 @@ export const Appbar = () => {
                                         </Link>
                                     </DropdownMenuItem>
                                     <DropdownMenuSeparator className="bg-blue-700" />
-                                    <DropdownMenuItem className="text-red-300 hover:bg-blue-800 hover:text-red-200 focus:bg-blue-800">
+                                    <DropdownMenuItem onClick={() => onLogout()} className="text-red-300 hover:bg-blue-800 hover:text-red-200 focus:bg-blue-800">
                                         Logout
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
