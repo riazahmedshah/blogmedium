@@ -38,11 +38,9 @@ export const FullBlog = () => {
   if (!data.blog) {
     return <NoBlogAvailable />;
   }
-
   const { blog } = data;
   const recommendedBlogs = data.recommendedBlogs || [];
 
-  // Add null checks for all author properties
   const author = blog.author || {};
   const safeAuthor = {
     name: author.name || "Unknown Author",
@@ -61,7 +59,7 @@ export const FullBlog = () => {
           />
         </div>
 
-        <div className="md:col-span-1 space-y-8 border border-l">
+        <div className="md:col-span-1 space-y-8 border-l ">
           <AuthorSection
             name={safeAuthor.name}
             profilePhoto={safeAuthor.profilePhoto}

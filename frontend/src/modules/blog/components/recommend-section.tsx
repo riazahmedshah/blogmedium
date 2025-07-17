@@ -11,7 +11,7 @@ export const RecommendSection: React.FC<RecommendSectionProps> = ({
 }) => {
   return (
     <div className="container mx-auto px-4 py-6 max-w-2xl">
-      <div className="w-full overflow-hidden rounded-lg shadow-md bg-white dark:bg-gray-800 p-4">
+      <div className="w-full overflow-hidden rounded-lg  bg-white dark:bg-gray-800 p-4">
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
           Recommended Reading
         </h3>

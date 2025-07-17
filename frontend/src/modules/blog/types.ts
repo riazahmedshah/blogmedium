@@ -37,13 +37,16 @@ export type Author = {
 };
 
 export type SingleBlog = {
-  id: string;
-  image: string;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  authorId: number;
-  categoryId: number;
-  author: Author;
+  blog:{
+    id: string;
+    image: string;
+    title: string;
+    content: string;
+    createdAt: string;
+    updatedAt: string;
+    authorId: number;
+    categoryId: number;
+    author: Author;
+  },
+  recommendedBlogs: [SingleBlog["blog"]]
 };

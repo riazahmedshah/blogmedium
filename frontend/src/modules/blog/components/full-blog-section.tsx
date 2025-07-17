@@ -5,11 +5,10 @@ interface FullBlogSectionProps {
 }
 
 export const FullBlogSection: React.FC<FullBlogSectionProps> = ({
-  title = "Untitled Post", // Default value
-  content = "<p>No content available</p>", // Default value
-  postImage = null, // Default value
+  title = "Untitled Post",
+  content = "<p>No content available</p>", 
+  postImage = null,
 }) => {
-  // Safe HTML content rendering
   const createMarkup = () => {
     try {
       return { __html: content };
@@ -19,14 +18,14 @@ export const FullBlogSection: React.FC<FullBlogSectionProps> = ({
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-3xl">
-      <div className="w-full overflow-hidden rounded-lg shadow-lg bg-white dark:bg-gray-800">
+    <div className="container mx-auto px-4 py-1 max-w-3xl">
+      <div className="w-full overflow-hidden bg-white dark:bg-gray-800">
         {postImage && (
           <div className="relative w-full h-64 sm:h-80 md:h-96 overflow-hidden">
             <img
               src={postImage}
               alt={title}
-              className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+              className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = `https://placehold.co/800x400/cccccc/333333?text=${encodeURIComponent(title)}`;

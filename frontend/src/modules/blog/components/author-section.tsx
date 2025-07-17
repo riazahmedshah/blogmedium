@@ -14,7 +14,7 @@ export const AuthorSection: React.FC<AuthorSectionProps> = ({
 }) => {
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-2xl">
+    <div className="container mx-auto px-4 py-6 max-w-2xl border">
       <div className="flex items-center space-x-4 p-4 rounded-lg bg-white dark:bg-gray-800">
         <Avatar className="h-16 w-16">
           {profilePhoto && (

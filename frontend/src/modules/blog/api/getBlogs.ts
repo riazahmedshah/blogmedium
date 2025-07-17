@@ -10,7 +10,6 @@ type blogRequestResponse = {
 }
 type fullBlogRequestResponse = {
   blog: SingleBlog | null;
-  recommendedBlogs: SingleBlog[];
 }
 
 export const getBlogRequest = async() => {
@@ -30,7 +29,7 @@ export const getBlogRequest = async() => {
 export const getSingleBlogRequest = async (blogId:string) => {
   try {
     const response = await axios.get<fullBlogRequestResponse>(`/blog/${blogId}`)
-    return response.data
+    return response.data.blog
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response?.status === 401 || error.response?.status === 404) {

@@ -14,7 +14,6 @@ const BlogsPage = () => {
     queryKey: ["blogs"],
     staleTime: 1000 * 60 * 5,
   });
-  console.log("DATA",data)
   if (isLoading) {
     return (
       <div className="space-y-6">
@@ -40,9 +39,8 @@ const BlogsPage = () => {
   return (
     <div className="space-y-6">
       {data.data.map((blog) => (
-        <Link to={`/blog/${blog.id}`} state={{blogData: blog}}>
+        <Link to={`/blog/${blog.id}`} state={{blogData: blog}} key={blog.id}>
           <BlogCard 
-            key={blog.id}
             category={blog.category.name}
             title={blog.title}
             image={blog.image}
