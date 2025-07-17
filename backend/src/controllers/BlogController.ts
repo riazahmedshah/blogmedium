@@ -136,7 +136,9 @@ export const getBlogByAuthor = async (c:Context) => {
     try {
         const prisma = createPrismaClient(c.env?.DATABASE_URL);
         const blogs = await getPostsByAuthorId(prisma, userId);
-        return ResponseHandler.json(c,blogs)
+        return ResponseHandler.json(c,{
+            blogs:blogs
+        })
     } catch (error) {
         return ResponseHandler.error(c,error);
     }
