@@ -10,6 +10,6 @@ export function createPrismaClient(databaseUrl: string) {
 
   return new PrismaClient({ 
     datasourceUrl: databaseUrl,
-    log: ['warn', 'error']
+    log: ['query', 'info', 'warn', 'error']
   }).$extends(withAccelerate());
 }

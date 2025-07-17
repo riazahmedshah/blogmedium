@@ -33,7 +33,7 @@ export async function getUserById(
     prisma: ExtendedPrismaClient,
     id: number
 ) {
-    return await prisma.user.findFirst({
+    return await prisma.user.findUnique({
         where: {
             id
         },
@@ -45,6 +45,9 @@ export async function getUserById(
             profilePhoto: true,
             createdAt: true,
             updatedAt: true
+        },
+        include:{
+            posts:true
         }
     });
 }

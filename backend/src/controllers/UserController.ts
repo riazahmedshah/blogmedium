@@ -69,6 +69,7 @@ export const login = async (c:Context) => {
 
 export const me = async(c:Context) => {
     const userId = c.get("userId");
+    console.log("USERID", userId);
     try {
         const prisma = createPrismaClient(c.env.DATABASE_URL)
         const user = await getUserById(prisma,userId);
