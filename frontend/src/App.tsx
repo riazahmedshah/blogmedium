@@ -12,6 +12,7 @@ import ProfileSettingPage from '@modules/user/pages/ProfileSettingPage';
 import BlogsPage from '@modules/blog/pages/BlogsPage';
 import PublishPage from '@modules/blog/pages/PublishPage';
 import SingleBlogPage from '@modules/blog/pages/SignleBlogPage'
+import ProfilePage from '@modules/user/pages/profilePage';
 
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
             <Route path='/blog/:id' element={<SingleBlogPage/>} />
             <Route element={<ProtectedRoute />}>
               <Route path='/profile/settings' element={<ProfileSettingPage/>}/>
-                <Route path='/publish' element={<PublishPage/>}/>
+              <Route path='/publish' element={<PublishPage/>}/>
+              <Route path='/profile' element={<ProfilePage/>}/>
             </Route>
             <Route path='*' element={<NotFound />} />
           </Route>

@@ -7,11 +7,11 @@ import { UpdateUserRequest } from "../api/updateUser";
 import { useCurrentUser } from "@modules/auth/hooks/useCurrentUser";
 import { currentUserQuery } from "@modules/auth/api/currentUser";
 import { toast } from "sonner";
-import { CardWrapper } from "./card-wrapper";
+import { CardWrapper } from "./updaet-profile/card-wrapper";
 import { Form } from "@ui/form";
-import { ProfileFormFields } from "./profile-form-field";
-import { FormActions } from "./update-profile-formaction";
-import { UserProfileUpload } from "./user-profile-upload";
+import { ProfileFormFields } from "./updaet-profile/profile-form-field";
+import { FormActions } from "./updaet-profile/update-profile-formaction";
+import { UserProfileUpload } from "./updaet-profile/user-profile-upload";
 import { handleUpdateError } from "../helper/handleError";
 
 export const UpdateProfileForm = () => {
