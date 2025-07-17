@@ -11,6 +11,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const {data:user} = useQuery<User | null>(currentUserQuery());
 
+  console.log("user", user)
+
   const handleLogin = (data:LoginRequestResponse) => {
     storeAuthToken(data.token);
     queryClient.setQueryData(currentUserQuery().queryKey, data.user);
