@@ -45,9 +45,6 @@ export async function getUserById(
             profilePhoto: true,
             createdAt: true,
             updatedAt: true
-        },
-        include:{
-            posts:true
         }
     });
 }

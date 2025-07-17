@@ -1,7 +1,7 @@
 import { Context } from "hono";
 import { postImageSchema, PostSchema, UpdatePostSchema } from "../schemas/postSchema";
 import { ResponseHandler } from "../utils/ResponseHandler";
-import { createBlog, deleteBlog, getAllBlogs, getBlogById, updateBlog } from "../repositories/BlogRepository";
+import { createBlog, deleteBlog, getAllBlogs, getBlogById, getPostsByAuthorId, updateBlog } from "../repositories/BlogRepository";
 import { createPrismaClient } from "../config/db";
 import { getR2Client } from "../config/r2Client";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
@@ -126,6 +126,17 @@ export const Delete = async (c:Context) => {
         ResponseHandler.json(c,{
             message:"DELETED_SUCCESSFULLY"
         })
+    } catch (error) {
+        return ResponseHandler.error(c,error);
+    }
+}
+
+export const getBlogByAuthor = async (c:Context) => {
+    const userId = c.get("userId")
+    try {
+        const prisma = createPrismaClient(c.env?.DATABASE_URL);
+        const blogs = await getPostsByAuthorId(prisma, userId);
+        return ResponseHandler.json(c,blogs)
     } catch (error) {
         return ResponseHandler.error(c,error);
     }

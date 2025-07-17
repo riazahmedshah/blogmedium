@@ -132,3 +132,20 @@ export async function getCategory(
     throw error
   }
 }
+
+export async function getPostsByAuthorId(
+    prisma: ExtendedPrismaClient,
+    authorId: number
+) {
+    return await prisma.post.findMany({
+        where: {
+            authorId: authorId
+        },
+        orderBy: {
+            createdAt: 'desc'
+        },
+        include: {
+            category: true
+        }
+    });
+}
