@@ -44,7 +44,7 @@ export const create = async (c:Context) => {
             R2_SECRET_ACCESS_KEY:c.env.R2_SECRET_ACCESS_KEY
         });
 
-        const objectKey = `post_images/${crypto.randomUUID()}-${file.name.replace(/\s+/g, '_')}}`;
+        const objectKey = `post_images/${crypto.randomUUID()}-${file.name.replace(/\s+/g, '_')}`;
 
         const fileArrayBuffer = await file.arrayBuffer();
         const fileUnit8Array = new Uint8Array(fileArrayBuffer);

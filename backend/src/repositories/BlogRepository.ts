@@ -28,8 +28,18 @@ export async function getAllBlogs(
             createdAt: 'desc'
         },
         include:{
-            author:true,
-            category:true
+            author:{
+                select:{
+                    name:true,
+                    role:true,
+                    profilePhoto:true
+                }
+            },
+            category:{
+                select:{
+                    name:true
+                }
+            }
         }
     });
 }
@@ -82,7 +92,13 @@ export async function getBlogById(
             },
         },
         include: {
-            author: true,
+            author: {
+                select:{
+                    name:true,
+                    role:true,
+                    profilePhoto:true,   
+                }
+            },
         },
         orderBy: {
             createdAt: 'desc',
