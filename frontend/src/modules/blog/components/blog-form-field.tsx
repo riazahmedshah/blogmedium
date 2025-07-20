@@ -21,10 +21,6 @@ export const BlogFormFields = ({ form, isLoading: formLoading }: BlogFormFieldsP
     queryKey: ['categories'],
     staleTime: 1000 * 60 * 5,
   });
-  console.log("Categories data:", data);
-  console.log("Is Loading:", isLoading);
-  console.log("Is Error:", isError);
-  console.log("Error object:", error);
   return (
     <div className="space-y-6">
       <FormField

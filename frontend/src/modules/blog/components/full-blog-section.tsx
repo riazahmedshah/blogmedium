@@ -1,4 +1,8 @@
-import DOMpurify from "dompurify"
+import React from 'react';
+import DOMpurify from "dompurify";
+import 'highlight.js/styles/atom-one-dark.css';
+
+import 'react-quill/dist/quill.snow.css';
 
 interface FullBlogSectionProps {
   title?: string;
@@ -8,16 +12,12 @@ interface FullBlogSectionProps {
 
 export const FullBlogSection: React.FC<FullBlogSectionProps> = ({
   title = "Untitled Post",
-  content = "<p>No content available</p>", 
+  content = "<p>No content available</p>",
   postImage = null,
 }) => {
   const createMarkup = () => {
-    const cleanHTML = DOMpurify.sanitize(content)
-    try {
-      return { __html: cleanHTML };
-    } catch (e) {
-      return { __html: "<p>Error loading content</p>" };
-    }
+    const cleanHTML = DOMpurify.sanitize(content);
+    return { __html: cleanHTML };
   };
 
   return (
@@ -43,7 +43,7 @@ export const FullBlogSection: React.FC<FullBlogSectionProps> = ({
         </div>
         <div className="p-6 pt-0 sm:p-8 sm:pt-0 text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <div dangerouslySetInnerHTML={createMarkup()} />
+            <div className="ql-editor" dangerouslySetInnerHTML={createMarkup()} />
           </div>
         </div>
       </div>

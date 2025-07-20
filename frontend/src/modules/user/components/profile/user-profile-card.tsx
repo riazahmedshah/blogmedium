@@ -30,7 +30,7 @@ export const UserProfileDetails: React.FC<UserProfileDetailsProps> = ({ user, bl
           <p className="text-gray-600">{user.email}</p>
           {user.role && <p className="text-gray-500 text-sm mt-1">{user.role}</p>}
           <p className="text-gray-700 text-md mt-2">
-            **Blogs Published:** <span className="font-semibold text-lg">{blogCount}</span>
+            <strong>Blogs Published:</strong> <span className="font-semibold text-lg">{blogCount}</span>
           </p>
         </div>
       </div>

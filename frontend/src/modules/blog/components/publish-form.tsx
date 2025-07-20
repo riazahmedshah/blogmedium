@@ -36,9 +36,9 @@ export const PublishForm = () => {
     setSelectedImage(null);
     form.reset();
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Failed to create blog");
-      console.error("Create blog error:", error);
+      // console.error("Create blog error:", error);
     }
 
   });

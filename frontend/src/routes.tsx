@@ -3,6 +3,7 @@ import {Appbar} from "./components/Appbar";
 import Footer from "./components/Footer";
 import { useAuth } from "@modules/auth/hooks/useAuth";
 import { FeatureCategory } from "./components/FeatureCategory";
+import { useEffect } from "react";
 
 export const Layout = () => {
   const location = useLocation();
@@ -32,17 +33,22 @@ export const Layout = () => {
 };
 
 export const ProtectedRoute = () => {
-  const navigate = useNavigate()
-  const {user} = useAuth();
+  const navigate = useNavigate();
+  const { user } = useAuth();
 
-  if (user === null) {
-    navigate("/auth/login");
-  }
+  useEffect(() => {
+    if (user === null) {
+      navigate('/auth/login', { replace: true });
+    }
+  }, [user, navigate]);
 
   if (user === undefined) {
     return <div>Checking authentication...</div>;
   }
 
+  if (user === null) {
+    return null; // or a loading spinner
+  }
 
-  return <Outlet/>;
-}
+  return <Outlet />;
+};
