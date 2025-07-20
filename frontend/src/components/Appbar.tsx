@@ -21,7 +21,7 @@ export const Appbar = () => {
                         Home
                     </Link>
                     <Link
-                        to="/blogs"
+                        to="/tag/blogs"
                         className={`hover:text-blue-300 transition-colors ${location.pathname.startsWith('/blogs') ? 'text-blue-300 font-medium' : ''}`}
                     >
                         Articles

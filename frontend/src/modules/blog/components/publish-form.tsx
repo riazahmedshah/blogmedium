@@ -44,7 +44,6 @@ export const PublishForm = () => {
   });
 
   const onSubmit = (data:createPostRequest) => {
-    console.log("Data", data);
     const formData = {
       ...data,
       postImage: selectedImage || undefined

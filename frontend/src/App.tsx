@@ -26,7 +26,7 @@ function App() {
           
           <Route element={<Layout />}>
             <Route path='/' element={<LandingPage />} />
-            <Route path='/blogs' element={<BlogsPage />} />
+            <Route path='/tag/blogs' element={<BlogsPage />} />
             <Route path='/blog/:id' element={<SingleBlogPage/>} />
             <Route element={<ProtectedRoute />}>
               <Route path='/profile/settings' element={<ProfileSettingPage/>}/>

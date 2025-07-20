@@ -19,7 +19,7 @@ export const BlogFormFields = ({ form, isLoading: formLoading }: BlogFormFieldsP
   const { data, isLoading, isError, error } = useQuery({
     queryFn: () => getCategoryRequest(),
     queryKey: ['categories'],
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    staleTime: 1000 * 60 * 5,
   });
   console.log("Categories data:", data);
   console.log("Is Loading:", isLoading);

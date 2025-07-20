@@ -34,10 +34,6 @@ export const LoginForm = () => {
       navigate("/")
       toast.success("Welcome back!", {
         description: "You have successfully logged in",
-        // action: {
-        //   label: "Go to Dashboard",
-        //   onClick: () => window.location.href = "/dashboard"
-        // }
       });
     },
     onError: (error: unknown) => {
