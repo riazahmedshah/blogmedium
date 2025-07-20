@@ -1,3 +1,5 @@
+import DOMpurify from "dompurify"
+
 interface FullBlogSectionProps {
   title?: string; // Made optional
   content?: string; // Made optional
@@ -10,8 +12,9 @@ export const FullBlogSection: React.FC<FullBlogSectionProps> = ({
   postImage = null,
 }) => {
   const createMarkup = () => {
+    const cleanHTML = DOMpurify.sanitize(content)
     try {
-      return { __html: content };
+      return { __html: cleanHTML };
     } catch (e) {
       return { __html: "<p>Error loading content</p>" };
     }
