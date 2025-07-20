@@ -1,9 +1,8 @@
 import axios from "@/config/axios";
-import { User } from "@modules/user/types";
 import { signupRequestData } from "@schemas/authSchema"
 
 export type SignupRequestResponse = {
-	user: User
+	MESSAGE: string;
 }
 
 export const signupRequest = async(data:signupRequestData) => {

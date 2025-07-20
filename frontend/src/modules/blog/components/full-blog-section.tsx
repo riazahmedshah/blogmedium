@@ -1,9 +1,9 @@
 import DOMpurify from "dompurify"
 
 interface FullBlogSectionProps {
-  title?: string; // Made optional
-  content?: string; // Made optional
-  postImage?: string | null; // Made optional and matches your data
+  title?: string;
+  content?: string;
+  postImage?: string | null;
 }
 
 export const FullBlogSection: React.FC<FullBlogSectionProps> = ({
