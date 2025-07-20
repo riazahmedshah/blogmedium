@@ -19,11 +19,13 @@ export const create = async(c: Context) => {
         const isUserExist = await getUserByEmail(prisma,data.email);
         if(!isUserExist){
             const hashPassword = await bcrypt.hash(data.password,10);
-            const newUser = await createUser(prisma, {...data, password:hashPassword});
-            return ResponseHandler.created(c,{newUser})
+            await createUser(prisma, {...data, password:hashPassword});
+            return ResponseHandler.created(c,{
+                MESSAGE:"USER_CREATED_SUCCESSFULLY"
+            })
         } else{
             return ResponseHandler.json(c,{
-                message:"USER_ALREADY_EXISTS"
+                MESSAGE:"USER_ALREADY_EXISTS"
             },403)
         }
     } catch (error) {
