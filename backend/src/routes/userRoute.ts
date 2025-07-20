@@ -12,4 +12,4 @@ userRoute.post("/create", create);
 userRoute.post("/signin", login);
 userRoute.put("/update", authMiddleware, update);
 userRoute.get("/me", authMiddleware, me);
-userRoute.get('/blogs', getBlogByAuthor);
+userRoute.get('/blogs', authMiddleware, getBlogByAuthor);
