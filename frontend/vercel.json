@@ -4,10 +4,15 @@
   ],
   "github": {
     "deployments": {
-      "productionBranch": "main" 
+      "productionBranch": "main"
+    }
+  },
+  "env": {
+    "VITE_BACKEND_URL": "https://backend.riyazsh360.workers.dev"
+  },
+  "build": {
+    "env": {
+      "VITE_BACKEND_URL": "https://backend.riyazsh360.workers.dev"
     }
   }
 }
-
-  
-  
