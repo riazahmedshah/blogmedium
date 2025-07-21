@@ -8,7 +8,7 @@ import { isAxiosError } from "axios";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const queryClient = useQueryClient();
-  const [logoutTrigger, setLogoutTrigger] = useState(false);
+  const [_logoutTrigger, setLogoutTrigger] = useState(false);
 
   const {data:user} = useQuery({
     ...currentUserQuery(),
@@ -20,12 +20,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   },
   });
 
-  // console.log("user", user)
-
   const handleLogin = async(data:LoginRequestResponse) => {
     storeAuthToken(data.token);
     await queryClient.invalidateQueries({queryKey: currentUserQuery().queryKey});
-    // queryClient.setQueryData(currentUserQuery().queryKey, data.user);
   }
 
   const handleLogout = () => {
