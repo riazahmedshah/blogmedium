@@ -2,8 +2,8 @@ import React from 'react';
 
 interface UserProfileDetailsProps {
   user: {
-    name: string;
-    email: string;
+    name?: string;
+    email?: string;
     profilePhoto?: string;
     role?: string;
   };

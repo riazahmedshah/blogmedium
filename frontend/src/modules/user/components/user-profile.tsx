@@ -9,7 +9,7 @@ export const UserProfile = () => {
   const user = useCurrentUser();
   const {data:blogsData, isLoading, isError} = useQuery({
     queryFn: () => getUserBlogsRequest(),
-    queryKey:["userBlogs", user.id],
+    queryKey:["userBlogs", user?.id],
     enabled: !!user?.id
   });
 
@@ -26,10 +26,10 @@ export const UserProfile = () => {
   }
 
   const userDetails = {
-    name: user.name,
-    email: user.email,
-    profilePhoto: user.profilePhoto  || undefined,
-    role: user.role
+    name: user?.name,
+    email: user?.email,
+    profilePhoto: user?.profilePhoto  || undefined,
+    role: user?.role
   }
 
 

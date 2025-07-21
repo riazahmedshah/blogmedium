@@ -60,7 +60,7 @@ export const UpdateProfileForm = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <UserProfileUpload 
-            currentImage={user && user.profilePhoto}
+            currentImage={user?.profilePhoto}
             selectedImage={selectedImage}
             onImageSelect={setSelectedImage}
           />

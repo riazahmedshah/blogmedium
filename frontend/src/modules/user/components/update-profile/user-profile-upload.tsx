@@ -5,7 +5,7 @@ import { FormLabel } from "@ui/form";
 import { ChangeEvent, useRef } from "react";
 
 interface ProfileImageUploadProps {
-  currentImage: string | null;
+  currentImage: string | null | undefined;
   selectedImage: File | null;
   onImageSelect: (file: File | null) => void;
 }

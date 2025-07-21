@@ -82,7 +82,7 @@ export const BlogFormFields = ({ form, isLoading: formLoading }: BlogFormFieldsP
                 <Input 
                   placeholder="Type category name manually" 
                   disabled={formLoading}
-                  onChange={(e) => field.onChange(Number(e.target.value))} // Convert to number
+                  onChange={(e) => field.onChange(Number(e.target.value))}
                 />
               </div>
             ) : (
