@@ -1,7 +1,7 @@
 import axiosDefault from "axios";
 import { getAuthToken } from "../modules/auth/helper/authToken"
 
-const API_URL = new URL('/api/v1', "http://localhost:8787").toString()
+const API_URL = new URL('/api/v1', import.meta.env.VITE_BACKEND_URL).toString()
 
 const axios = axiosDefault.create({
   baseURL: API_URL

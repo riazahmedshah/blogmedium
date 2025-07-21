@@ -31,7 +31,7 @@ export const NotFound = () => {
             </Link>
           </Button>
           <Button asChild>
-            <Link to="/blog">
+            <Link to="/tag/blog">
               Visit our blog
             </Link>
           </Button>

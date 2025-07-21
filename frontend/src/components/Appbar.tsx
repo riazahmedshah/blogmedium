@@ -114,7 +114,7 @@ export const Appbar = () => {
                                 variant="ghost"
                                 className="hidden sm:inline-flex"
                             >
-                                <Link to="/blogs">
+                                <Link to="/tag/blogs">
                                     Explore
                                 </Link>
                             </Button>
