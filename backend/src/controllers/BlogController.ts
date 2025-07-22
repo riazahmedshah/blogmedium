@@ -12,23 +12,51 @@ export const create = async (c:Context) => {
 
     const postImage = formData['postImage'];
 
-    if(!postImage || !(postImage instanceof File)){
-        return c.json({ 
-            error: 'No profile photo found or invalid file type provided.' 
-        }, 400);
-    }
+    let publicUrl: string | undefined;
+    let objectKey: string | undefined;
 
-    const file: File = postImage as File;
+    if (postImage instanceof File) {
+        const file: File = postImage;
 
-    const isValidPhotoSChema = postImageSchema.safeParse(file);
-    if(!isValidPhotoSChema.success){
-        return ResponseHandler.zodError(c, isValidPhotoSChema.error.errors);
+        const isValidPhotoSChema = postImageSchema.safeParse(file);
+        if(!isValidPhotoSChema.success){
+            return ResponseHandler.zodError(c, isValidPhotoSChema.error.errors);
+        }
+
+        try {
+            const r2Client = getR2Client({
+                CLOUDFLARE_ACCOUNT_ID:c.env.CLOUDFLARE_ACCOUNT_ID,
+                R2_ACCESS_KEY_ID:c.env.R2_ACCESS_KEY_ID,
+                R2_SECRET_ACCESS_KEY:c.env.R2_SECRET_ACCESS_KEY
+            });
+
+            objectKey = `post_images/${crypto.randomUUID()}-${file.name.replace(/\s+/g, '_')}`;
+            const fileArrayBuffer = await file.arrayBuffer();
+            const fileUnit8Array = new Uint8Array(fileArrayBuffer);
+
+            const cammand = new PutObjectCommand({
+                Bucket:"my-blog-images",
+                Key:objectKey,
+                Body: fileUnit8Array,
+                ContentType: file.type
+            });
+
+            const uploadResponse = await r2Client.send(cammand);
+            console.log('R2 post_img Upload successful:', uploadResponse);
+            publicUrl = `https://pub-51cab5eaf8c3402d808557eeaf36d4d1.r2.dev/${objectKey}`;
+
+        } catch (error) {
+            console.error('Error uploading image to R2:', error); 
+            return ResponseHandler.error(c, error);
+        }
+    } else {
+        console.log('No valid image file provided for the post, proceeding without an image.');
+        // return c.json({ error: 'An image file is required for the post.' }, 400);
     }
 
     const dataToUpdate = {
         title: formData['title'] as string,
         content: formData['content'] as string,
-        authorId: formData['authorId'] as string,
         categoryId: formData['categoryId'] as string,
         published: formData['published'] as string
     }
@@ -37,41 +65,24 @@ export const create = async (c:Context) => {
     if(!success){
         return ResponseHandler.zodError(c,error.errors);
     }
+
     try {
-        const r2Client = getR2Client({
-            CLOUDFLARE_ACCOUNT_ID:c.env.CLOUDFLARE_ACCOUNT_ID,
-            R2_ACCESS_KEY_ID:c.env.R2_ACCESS_KEY_ID,
-            R2_SECRET_ACCESS_KEY:c.env.R2_SECRET_ACCESS_KEY
-        });
-
-        const objectKey = `post_images/${crypto.randomUUID()}-${file.name.replace(/\s+/g, '_')}`;
-
-        const fileArrayBuffer = await file.arrayBuffer();
-        const fileUnit8Array = new Uint8Array(fileArrayBuffer);
-        const cammand = new PutObjectCommand({
-            Bucket:"my-blog-images",
-            Key:objectKey,
-            Body: fileUnit8Array,
-            ContentType: file.type
-        });
-
-        const uploadResponse = await r2Client.send(cammand);
-        console.log('R2 post_img Upload successful:', uploadResponse);
-        const publicUrl = `https://pub-51cab5eaf8c3402d808557eeaf36d4d1.r2.dev/${objectKey}`;
-
         const prisma = createPrismaClient(c.env?.DATABASE_URL);
+
         const blog = await createBlog(prisma,{
-            image:publicUrl,
+            image: publicUrl,
             title: data.title,
             content: data.content,
             authorId:userId,
             categoryId:data.categoryId
         });
+
         return ResponseHandler.created(c,{
             blog:blog,
             objectKey: objectKey
         });
     } catch (error) {
+        console.error('Error creating blog post in database:', error);
         return ResponseHandler.error(c,error)
     }
 };
