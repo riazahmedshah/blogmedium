@@ -14,13 +14,16 @@ export const UpdateUserRequest = async(data: updateuserData) => {
   if(data.role !== undefined){
     formData.append('role', data.role)
   }
-  if (data.profilePhoto !== undefined) {
-      if (data.profilePhoto === null) {
-          formData.append('profilePhoto', 'null')
-      } else {
-          formData.append('profilePhoto', data.profilePhoto)
-      }
+  if(data.profilePhoto instanceof File){
+    formData.append('postImage', data.profilePhoto);
   }
+  // if (data.profilePhoto !== undefined) {
+  //     if (data.profilePhoto === null) {
+  //         formData.append('profilePhoto', 'null')
+  //     } else {
+  //         formData.append('profilePhoto', data.profilePhoto)
+  //     }
+  // }
 
   const response = await axios.put(
     '/user/update',

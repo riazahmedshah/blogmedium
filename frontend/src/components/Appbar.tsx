@@ -13,7 +13,44 @@ export const Appbar = () => {
     return (
         <header className="sticky top-0 z-50 bg-gradient-to-r from-blue-950 to-blue-900 text-white shadow-lg">
             <div className="container mx-auto flex items-center justify-between h-16 px-4">
-                <div className="hidden md:flex items-center space-x-6">
+                <div className="flex items-center md:hidden"> 
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" className="text-white hover:text-blue-300">
+                                <span className="sr-only">Open main menu</span>
+                                {/* Hamburger icon */}
+                                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56 bg-blue-900 border-blue-700 text-white font-bold">
+                            <DropdownMenuItem className="hover:bg-blue-800 focus:bg-blue-800">
+                                <Link to="/" className="w-full">
+                                    Home
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="hover:bg-blue-800 focus:bg-blue-800">
+                                <Link to="/tag/blogs" className="w-full">
+                                    Articles
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="hover:bg-blue-800 focus:bg-blue-800">
+                                <a
+                                    href="https://riazdev.vercel.app/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full"
+                                >
+                                    About
+                                </a>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+
+                {/* Desktop Navigation */}
+                <div className="hidden md:flex items-center space-x-6"> 
                     <Link
                         to="/"
                         className={`hover:text-blue-300 transition-colors ${location.pathname === '/' ? 'text-blue-300 font-medium' : ''}`}
@@ -38,7 +75,7 @@ export const Appbar = () => {
 
                 <Link
                     to="/"
-                    className="flex items-center gap-2 group mx-4"
+                    className="flex items-center gap-2 group mx-auto md:mx-4" 
                 >
                     <Bird
                         size={28}
@@ -55,7 +92,7 @@ export const Appbar = () => {
                             <Button
                                 asChild
                                 variant="ghost"
-                                className="hidden sm:inline-flex"
+                                className="hidden sm:inline-flex" 
                             >
                                 <Link to="/publish">
                                     Create Post

@@ -17,13 +17,16 @@ export const createBlogRequest = async(data:createPostRequest) => {
   if(data.categoryId !== undefined){
     formData.append('categoryId', (data.categoryId).toString(),)
   }
-  if(data.postImage !== undefined){
-    if (data.postImage === null) {
-          formData.append('postImage', 'null')
-      } else {
-          formData.append('postImage', data.postImage)
-      }
+  if(data.postImage instanceof File){
+    formData.append('postImage', data.postImage);
   }
+  // if(data.postImage !== undefined){
+  //   if (data.postImage === null) {
+  //         formData.append('postImage', 'null')
+  //     } else {
+  //         formData.append('postImage', data.postImage)
+  //     }
+  // }
   const response = await axios.post<postRequestResponse>(
     '/blog/create',
     formData,
