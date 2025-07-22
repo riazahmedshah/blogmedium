@@ -15,7 +15,7 @@ import { UserProfileUpload } from "./update-profile/user-profile-upload";
 import { handleUpdateError } from "../helper/handleError";
 
 export const UpdateProfileForm = () => {
-  const user = useCurrentUser();
+  const {user} = useCurrentUser();
   const queryClient = useQueryClient();
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 

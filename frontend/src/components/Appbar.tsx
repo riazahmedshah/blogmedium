@@ -7,7 +7,7 @@ import { useAuth } from "@modules/auth/hooks/useAuth";
 
 export const Appbar = () => {
     const { onLogout } = useAuth();
-    const user = useCurrentUser();
+    const {user} = useCurrentUser();
     const location = useLocation();
 
     return (

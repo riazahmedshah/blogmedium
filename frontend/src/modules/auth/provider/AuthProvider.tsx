@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const queryClient = useQueryClient();
   const [_logoutTrigger, setLogoutTrigger] = useState(false);
 
-  const {data:user} = useQuery({
+  const {data:user, isLoading} = useQuery({
     ...currentUserQuery(),
     retry: (failureCount, error) => {
     if (isAxiosError(error) && error.response?.status === 401) {
@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const contextValue = {
     user: user ?? null,
+    isLoading:isLoading,
     onLogin: handleLogin,
     onLogout: handleLogout
   }

@@ -1,9 +1,28 @@
 import { motion } from "framer-motion";
 import { Bird } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginForm } from "../components/login-form";
+import { useCurrentUser } from "../hooks/useCurrentUser";
+import { useEffect } from "react";
 
 const LoginPage = ({ type }: { type: "Signup" | "Signin" }) => {
+  const navigate = useNavigate()
+  const {user, isLoading} = useCurrentUser();
+
+  useEffect(() => {
+    if (!isLoading && user) {
+      navigate("/");
+    }
+  }, [user, isLoading, navigate]);
+
+  if (isLoading) {
+    return (
+      <section className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-indigo-900 text-white">
+        <p>Checking authentication status...</p>
+      </section>
+    );
+  }
+  
   return (
     <section className="w-full min-h-screen bg-gradient-to-br from-blue-900 to-indigo-900">
       <div className="container relative h-screen flex items-center justify-center px-4">

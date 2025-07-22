@@ -1,7 +1,7 @@
 import { useAuth } from "./useAuth"
 
 export const useCurrentUser = () => {
-  const {user} = useAuth();
+  const {user, isLoading} = useAuth();
 
-  return user
+  return {user, isLoading}
 }

@@ -6,7 +6,7 @@ import { UserProfileDetails } from "./profile/user-profile-card";
 import { UserBlogList } from "./profile/user-blog-list";
 
 export const UserProfile = () => {
-  const user = useCurrentUser();
+  const {user} = useCurrentUser();
   const {data:blogsData, isLoading, isError} = useQuery({
     queryFn: () => getUserBlogsRequest(),
     queryKey:["userBlogs", user?.id],
