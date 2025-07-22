@@ -15,7 +15,7 @@ export const UpdateUserRequest = async(data: updateuserData) => {
     formData.append('role', data.role)
   }
   if(data.profilePhoto instanceof File){
-    formData.append('postImage', data.profilePhoto);
+    formData.append('profilePhoto', data.profilePhoto);
   }
   // if (data.profilePhoto !== undefined) {
   //     if (data.profilePhoto === null) {
