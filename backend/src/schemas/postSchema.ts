@@ -12,7 +12,7 @@ export const postImageSchema = z.instanceof(File)
 }, "LIMIT_FILE_SIZE (Max 50MB)");
 
 export const PostSchema = z.object({
-    title:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters"),
+    title:z.string().min(2, "Name must be atleast 2 characters").max(100, "Title cannot be more that 100 characters"),
     content:z.string().min(10, "Name must be atleast 2 characters"), 
     published :z.coerce.boolean().optional(),
     categoryId:z.coerce.number().positive(),
