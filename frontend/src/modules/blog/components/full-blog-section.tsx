@@ -43,7 +43,7 @@ export const FullBlogSection: React.FC<FullBlogSectionProps> = ({
         </div>
         <div className="p-6 pt-0 sm:p-8 sm:pt-0 text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <div className="ql-editor" dangerouslySetInnerHTML={createMarkup()} />
+            <div className="" dangerouslySetInnerHTML={createMarkup()} />
           </div>
         </div>
       </div>
