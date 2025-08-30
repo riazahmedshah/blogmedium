@@ -4,17 +4,21 @@ import { isAxiosError } from "axios";
 
 type blogRequestResponse = {
   data:BlogList
-  total?: number
-  page?: number
-  perPage?: number
+  pagination:{
+    currentPage: number,
+    perPage: number,
+    totalPages: number,
+    totalCount: number,
+    hasPagination: boolean
+  }
 }
 type fullBlogRequestResponse = {
   blog: SingleBlog | null;
 }
 
-export const getBlogRequest = async() => {
+export const getBlogRequest = async(page?:number, perPage?:number) => {
   try {
-    const response = await axios.get<blogRequestResponse>('/blog/bulk');
+    const response = await axios.get<blogRequestResponse>(`/blog/bulk?page=${page}&perPage=${perPage}`);
       return response.data
   } catch (error) {
     if(isAxiosError(error)){
