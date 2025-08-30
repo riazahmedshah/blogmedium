@@ -89,12 +89,24 @@ export const create = async (c:Context) => {
 
 export const getBulk = async (c:Context) => {
     const page = Number(c.req.query('page')) || 1
+    const perPageParam = c.req.query('perPage');
+
+    const perPage = perPageParam ? Number(perPageParam) : undefined;
     try {
         const prisma = createPrismaClient(c.env?.DATABASE_URL);
-        const bulk = await getAllBlogs(prisma,page);
+        const bulk = await getAllBlogs(prisma,page, perPage);
+
+        const totalCount = await prisma.post.count();
+        const totalPages = perPage ? Math.ceil(totalCount / perPage) : 1;
         return ResponseHandler.json(c,{
             data:bulk,
-            pagination: { currentPage: page } 
+            pagination: { 
+                currentPage: page,
+                perPage: perPage || 'all',
+                totalPages: totalPages,
+                totalCount: totalCount,
+                hasPagination: perPage !== undefined
+            } 
 
         });
     } catch (error) {

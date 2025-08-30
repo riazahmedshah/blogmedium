@@ -2,42 +2,63 @@ import { Prisma } from "@prisma/client";
 import { ExtendedPrismaClient } from "../config/db";
 
 export async function createBlog(
-    prisma : ExtendedPrismaClient,
+    prisma: ExtendedPrismaClient,
     createBlogInput: Prisma.PostUncheckedCreateInput
-){
+) {
     return await prisma.post.create({
-        data:{
-            image:createBlogInput.image,
-            title:createBlogInput.title,
-            content:createBlogInput.content,
-            categoryId:createBlogInput.categoryId,
-            authorId:createBlogInput.authorId
+        data: {
+            image: createBlogInput.image,
+            title: createBlogInput.title,
+            content: createBlogInput.content,
+            categoryId: createBlogInput.categoryId,
+            authorId: createBlogInput.authorId
         }
     });
 }
 
 export async function getAllBlogs(
-    prisma : ExtendedPrismaClient,
+    prisma: ExtendedPrismaClient,
     page: number = 1,
-    perPage:number = 5
-){
+    perPage?: number
+) {
+    if (!perPage) {
+        return await prisma.post.findMany({
+            orderBy: {
+                createdAt: 'desc'
+            },
+            include: {
+                author: {
+                    select: {
+                        name: true,
+                        role: true,
+                        profilePhoto: true
+                    }
+                },
+                category: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
+    }
     return await prisma.post.findMany({
-        skip:(page - 1) * perPage,
+        skip: (page - 1) * perPage,
         take: perPage,
-        orderBy:{
+        orderBy: {
             createdAt: 'desc'
         },
-        include:{
-            author:{
-                select:{
-                    name:true,
-                    role:true,
-                    profilePhoto:true
+        include: {
+            author: {
+                select: {
+                    name: true,
+                    role: true,
+                    profilePhoto: true
                 }
             },
-            category:{
-                select:{
-                    name:true
+            category: {
+                select: {
+                    name: true
                 }
             }
         }
@@ -50,26 +71,26 @@ interface Author {
     name: string;
     profilePhoto: string | null;
     role: string;
-    createdAt: string; 
+    createdAt: string;
     updatedAt: string;
 }
 
 interface Post {
-  id: string;
-  image: string;
-  title: string;
-  content: string;
-  createdAt: string; 
-  updatedAt: string;
-  authorId: number;
-  categoryId: number;
-  author: Author;
+    id: string;
+    image: string;
+    title: string;
+    content: string;
+    createdAt: string;
+    updatedAt: string;
+    authorId: number;
+    categoryId: number;
+    author: Author;
 }
 
 export async function getBlogById(
-    prisma : ExtendedPrismaClient,
-    id:string
-){
+    prisma: ExtendedPrismaClient,
+    id: string
+) {
     const mainBlog = await prisma.post.findUnique({
         where: {
             id: id,
@@ -93,10 +114,10 @@ export async function getBlogById(
         },
         include: {
             author: {
-                select:{
-                    name:true,
-                    role:true,
-                    profilePhoto:true,   
+                select: {
+                    name: true,
+                    role: true,
+                    profilePhoto: true,
                 }
             },
         },
@@ -112,15 +133,15 @@ export async function getBlogById(
 }
 
 export async function updateBlog(
-    prisma : ExtendedPrismaClient,
-    id:string,
+    prisma: ExtendedPrismaClient,
+    id: string,
     updateBlogInput: Prisma.PostUpdateInput
-){
+) {
     return await prisma.post.update({
-        where:{
+        where: {
             id
         },
-        data:{
+        data: {
             title: updateBlogInput.title,
             content: updateBlogInput.content,
             published: true
@@ -128,25 +149,25 @@ export async function updateBlog(
     });
 }
 export async function deleteBlog(
-    prisma : ExtendedPrismaClient,
-    id:string
-){
+    prisma: ExtendedPrismaClient,
+    id: string
+) {
     return await prisma.post.delete({
-        where:{
+        where: {
             id
         }
     });
 }
 
 export async function getCategory(
-    prisma:ExtendedPrismaClient
+    prisma: ExtendedPrismaClient
 ) {
-  try {
-    return await prisma.category.findMany();
-  } catch (error) {
-    console.error(error);
-    throw error
-  }
+    try {
+        return await prisma.category.findMany();
+    } catch (error) {
+        console.error(error);
+        throw error
+    }
 }
 
 export async function getPostsByAuthorId(
