@@ -52,11 +52,11 @@ export const BlogPostImageUpload = ({ selectedImage, onImageSelect, className }:
       <FormLabel>Featured Image</FormLabel>
       {previewImage ? (
         <div className="relative group w-full">
-          <div className="overflow-hidden rounded-md border flex justify-center items-center">
+          <div className="relative overflow-hidden rounded-md border flex justify-center items-center aspect-w-16 aspect-h-9">
             <img
               src={previewImage}
               alt="Preview"
-              className="w-full max-h-64 object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
           <Button

@@ -34,7 +34,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({ value, onChange, disable
         <div className="border rounded-lg overflow-hidden">
           <div className='prose max-w-none'>
             <ReactQuill
-              className="my-custom-editor"
+              className="my-custom-editor h-48"
               theme="snow"
               value={value}
               onChange={onChange}
