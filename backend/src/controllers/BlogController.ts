@@ -146,7 +146,7 @@ export const Delete = async (c:Context) => {
     try {
         const prisma = createPrismaClient(c.env?.DATABASE_URL);
         await deleteBlog(prisma,id);
-        ResponseHandler.json(c,{
+        return ResponseHandler.json(c,{
             message:"DELETED_SUCCESSFULLY"
         })
     } catch (error) {
