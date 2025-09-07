@@ -1,6 +1,6 @@
 import { BlogList } from '@modules/blog/types';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   AlertDialog,
@@ -23,6 +23,7 @@ interface UserBlogListProps {
 export const UserBlogList: React.FC<UserBlogListProps> = ({ blogs }) => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [blogToDeleteId, setBlogToDeleteId] = useState<string | null>(null);
+  const navigate = useNavigate()
 
   const queryClient = useQueryClient();
 
@@ -62,7 +63,7 @@ export const UserBlogList: React.FC<UserBlogListProps> = ({ blogs }) => {
   };
 
   const handleEditClick = (blogId: string) => {
-    // **PLACE YOUR NAVIGATION TO EDIT PAGE HERE**
+    navigate(`/update/${blogId}`)
     console.log(`Editing blog with ID: ${blogId}`);
   };
 

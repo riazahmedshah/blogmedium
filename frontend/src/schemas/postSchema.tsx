@@ -21,9 +21,10 @@ export type createPostRequest = z.infer<typeof PostSchema>
 
 
 export const UpdatePostSchema = z.object({
-    tile:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters"),
-    content:z.string().min(10, "Name must be atleast 2 characters"), 
+    title: z.string().min(2, "Title must be at least 2 characters").max(100, "Title cannot be more than 100 characters").optional(),
+    content:z.string().min(10, "Name must be atleast 2 characters").optional(), 
+    categoryId: z.number().int().positive("Category ID must be a positive integer").optional(),
     published :z.boolean().optional(),
 })
 
-export type UpdateBlogInput = z.infer<typeof UpdatePostSchema>
+export type UpdatePostRequest = z.infer<typeof UpdatePostSchema>

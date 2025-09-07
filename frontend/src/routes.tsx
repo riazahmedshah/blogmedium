@@ -10,7 +10,8 @@ export const Layout = () => {
   const pathsToHideFeatureCategory = [
     '/publish',
     '/blog',
-    '/profile'
+    '/profile',
+    '/update'
   ];
 
   const shouldHideFeatureCategory = pathsToHideFeatureCategory.some(path =>

@@ -1,7 +1,7 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@ui/form";
 import { Input } from "@ui/input";
 import { UseFormReturn } from "react-hook-form";
-import { createPostRequest } from "@schemas/postSchema";
+// import { createPostRequest, UpdatePostRequest } from "@schemas/postSchema";
 import { useQuery } from "@tanstack/react-query";
 import { getCategoryRequest } from "../api/getCategory";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@ui/select";
@@ -11,7 +11,7 @@ import { AlertCircle } from "lucide-react";
 import { TextEditor } from "./text-editor";
 
 interface BlogFormFieldsProps {
-  form: UseFormReturn<createPostRequest>;
+  form: UseFormReturn<any>;
   isLoading?: boolean;
 }
 
