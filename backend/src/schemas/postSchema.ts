@@ -21,8 +21,8 @@ export const PostSchema = z.object({
 
 
 export const UpdatePostSchema = z.object({
-    title:z.string().min(2, "Name must be atleast 2 characters").max(20, "Name cannot be more that 20 characters").optional(),
+    title:z.string().min(2, "Name must be atleast 2 characters").max(100, "Title cannot be more that 100 characters").optional(),
     content:z.string().min(10, "Name must be atleast 2 characters").optional(), 
-    categoryId: z.number().optional(),
+    categoryId: z.coerce.number().positive().optional(),
     published :z.boolean().optional(),
 })
